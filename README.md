@@ -123,7 +123,7 @@ This assessment is worth 55% of the marks for the Flutter Course (the remaining 
 - **[Application (30%)](#application)**: Demonstrated through a live demo during practical sessions
 - **[Software Development Practices (25%)](#software-development-practices)**: Assessed through your repository
 
-For more information about the overall course assessment structure, visit the [Flutter Course homepage](https://manighahrmani.github.io/sandwich_shop/).
+For info on the overall course assessment structure, visit the [Flutter Course homepage](https://manighahrmani.github.io/sandwich_shop/).
 
 ### Application
 
