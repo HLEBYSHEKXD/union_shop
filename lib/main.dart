@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_page.dart';
+import 'package:union_shop/product_detail_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -21,7 +22,10 @@ class UnionShopApp extends StatelessWidget {
       initialRoute: '/',
       // When navigating to '/product', build and return the ProductPage
       // In your browser, try this link: http://localhost:49856/#/product
-      routes: {'/product': (context) => const ProductPage()},
+      routes: {
+        '/product': (context) => const ProductPage(),
+        '/product-detail': (context) => const ProductDetailPage(),
+      },
     );
   }
 }
@@ -265,24 +269,28 @@ class HomeScreen extends StatelessWidget {
                           price: '£1.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                          productId: '1',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Magnet',
                           price: '£4.50',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+                          productId: '2',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Bookmark',
                           price: '£3.00',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
+                          productId: '3',
                         ),
                         ProductCard(
                           title: 'Portsmouth City Notebook',
                           price: '£7.50',
                           imageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
+                          productId: '4',
                         ),
                       ],
                     ),
@@ -316,19 +324,21 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String productId;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    required this.productId,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product');
+        Navigator.pushNamed(context, '/product-detail', arguments: productId);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
