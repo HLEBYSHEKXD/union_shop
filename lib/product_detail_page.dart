@@ -102,28 +102,33 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       '7': {
         'name': 'Limited Edition Essential Zip Hoodies',
         'price': '£14.99',
+        'oldPrice': '£20.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
         'images': [
-          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
-          'https://shop.upsu.net/cdn/shop/files/1000045774_07de1185-b921-47fa-b3a8-b1823478ca2b_1024x1024@2x.jpg?v=1749131089',
-          'https://shop.upsu.net/cdn/shop/files/Baby_Pink_Shopify_Image_1024x1024@2x.png?v=1749460435',
-          'https://shop.upsu.net/cdn/shop/files/Blue_Stone_Shopify_Image_1024x1024@2x.png?v=1749460441',
+          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089', // photo
+          'https://shop.upsu.net/cdn/shop/files/1000045774_07de1185-b921-47fa-b3a8-b1823478ca2b_1024x1024@2x.jpg?v=1749131089', // photo
+          'https://shop.upsu.net/cdn/shop/files/Baby_Pink_Shopify_Image_1024x1024@2x.png?v=1749460435', // Baby Pink
+          'https://shop.upsu.net/cdn/shop/files/Blue_Stone_Shopify_Image_1024x1024@2x.png?v=1749460441', // Stone Blue
         ],
+        'colors': ['Baby Pink', 'Stone Blue'], // NEW
+        'sizes': ['S', 'M', 'L'], // NEW
         'description':
             'Redesigned with a fresh chest logo, our limited addition Baby Pink and Stone Blue Hoodies are ultra cosy made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile. ',
       },
-
       // 8) Essential T-Shirt — 2 images
       '8': {
         'name': 'Essential T-Shirt',
         'price': '£6.99',
+        'oldPrice': '£10.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
         'images': [
-          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-          'https://shop.upsu.net/cdn/shop/files/LightBlueT-shirt_1024x1024@2x.png?v=1759827236',
+          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236', // Sage
+          'https://shop.upsu.net/cdn/shop/files/LightBlueT-shirt_1024x1024@2x.png?v=1759827236', // Light Blue
         ],
+        'colors': ['Sage', 'Light Blue'], // NEW
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'], // NEW
         'description':
             'Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe\'s been waiting for.',
       },
@@ -137,12 +142,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         args is String ? args : (args is int ? args.toString() : '1');
     final productData = getProductData()[productId] ?? getProductData()['1']!;
     final isSignature = productId == '5' || productId == '6';
+    final isEssential = productId == '7' || productId == '8'; // NEW
+    final hasOptions = isSignature || isEssential; // NEW
 
     // Build the images list once per build
     final List<String> images = (productData['images'] is List &&
             (productData['images'] as List).isNotEmpty)
         ? (productData['images'] as List).cast<String>() // ensure List<String>
         : [productData['image'] as String];
+
+    // Defaults for options (Signature + Essential)
+    if (hasOptions) {
+      // Colour defaults
+      if (selectedColor == null) {
+        if (productId == '5')
+          selectedColor = 'Sage';
+        else if (productId == '6')
+          selectedColor = 'Sand';
+        else if (productId == '7')
+          selectedColor = 'Baby Pink';
+        else if (productId == '8') selectedColor = 'Sage';
+      }
+      // Size default (per screenshot, L)
+      selectedSize ??= 'L';
+    }
+
+    final String? oldPrice = productData['oldPrice'] as String?;
 
     return Scaffold(
       body: Column(
@@ -243,15 +268,36 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 style: const TextStyle(
                                     fontSize: 32, fontWeight: FontWeight.bold)),
                             const SizedBox(height: 16),
-                            Text(productData['price'] as String,
-                                style: const TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w600)),
+                            Row(
+                              children: [
+                                if (oldPrice != null) ...[
+                                  Text(
+                                    oldPrice!,
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                ],
+                                Text(
+                                  productData['price'] as String,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        const Color.fromARGB(255, 77, 123, 168),
+                                  ),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 8),
                             const Text('Tax included.',
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.grey)),
                             const SizedBox(height: 32),
-                            if (isSignature) ...[
+                            if (hasOptions) ...[
                               Row(
                                 children: [
                                   Expanded(
@@ -259,7 +305,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        const Text('Colour',
+                                        const Text('Color',
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600)),
@@ -274,17 +320,36 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           onChanged: (v) {
                                             setState(() {
                                               selectedColor = v;
-                                              // Mapping for signature items
+                                              // Image mapping by color
                                               if (productId == '6') {
-                                                // T-Shirt: Indigo Blue -> 0, Sand -> 1
+                                                // Signature T-Shirt
                                                 selectedImageIndex =
                                                     (selectedColor == 'Sand')
                                                         ? 1
                                                         : 0;
                                               } else if (productId == '5') {
-                                                // Hoodie: Ivory -> 1, Sage -> 0
+                                                // Signature Hoodie
                                                 selectedImageIndex =
                                                     (selectedColor == 'Ivory')
+                                                        ? 1
+                                                        : 0;
+                                              } else if (productId == '7') {
+                                                // Essential Zip Hoodie
+                                                // Baby Pink -> index 2, Stone Blue -> index 3
+                                                if (selectedColor ==
+                                                    'Baby Pink')
+                                                  selectedImageIndex = 0;
+                                                else if (selectedColor ==
+                                                    'Stone Blue')
+                                                  selectedImageIndex = 1;
+                                                else
+                                                  selectedImageIndex = 0;
+                                              } else if (productId == '8') {
+                                                // Essential T-Shirt
+                                                // Sage -> 0, Light Blue -> 1
+                                                selectedImageIndex =
+                                                    (selectedColor ==
+                                                            'Light Blue')
                                                         ? 1
                                                         : 0;
                                               }
@@ -316,8 +381,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         const SizedBox(height: 8),
                                         DropdownButtonFormField<String>(
                                           value: selectedSize,
-                                          items: (productData['sizes']
-                                                  as List<String>)
+                                          items: (productData['sizes'] as List)
+                                              .cast<String>()
                                               .map((s) => DropdownMenuItem(
                                                   value: s, child: Text(s)))
                                               .toList(),

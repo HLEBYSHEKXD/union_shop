@@ -144,13 +144,17 @@ class HomeScreen extends StatelessWidget {
                         id: '7',
                         title: 'Limited Edition Essential Zip Hoodies',
                         price: '£14.99',
-                        imageUrl: 'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089', // TODO
+                        oldPrice: '£20.00', // NEW
+                        imageUrl:
+                            'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089', // TODO
                       ),
                       ProductCard(
                         id: '8',
                         title: 'Essential T-Shirt',
                         price: '£6.99',
-                        imageUrl: 'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236', // TODO
+                        oldPrice: '£10.00', // NEW
+                        imageUrl:
+                            'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236', // TODO
                       ),
                     ],
                   ),
@@ -278,6 +282,7 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String? oldPrice; // NEW
 
   const ProductCard({
     super.key,
@@ -285,48 +290,54 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.oldPrice, // NEW
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          '/product-detail',
-          arguments: id, // ensure a unique id per item
-        );
-      },
+      onTap: () =>
+          Navigator.pushNamed(context, '/product-detail', arguments: id),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child: Icon(Icons.image_not_supported, color: Colors.grey),
-                  ),
-                );
-              },
+          AspectRatio(
+            aspectRatio: 1,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(imageUrl, fit: BoxFit.cover),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          const SizedBox(height: 8),
+          Text(
+            title,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(height: 4),
+          // NEW: price row with strike-through old price
+          Row(
             children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
+              if (oldPrice != null) ...[
+                Text(
+                  oldPrice!,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                    decoration: TextDecoration.lineThrough,
+                  ),
+                ),
+                const SizedBox(width: 8),
+              ],
               Text(
                 price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: 14,
+                  color: const Color.fromARGB(255, 77, 123, 168),
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ],
           ),
