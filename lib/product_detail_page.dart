@@ -11,6 +11,10 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  String? selectedColor;
+  String? selectedSize;
+  int selectedImageIndex = 0; // keep state here, do NOT reset in build
+
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
   }
@@ -32,11 +36,17 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Celebrate the charm of our coastal city with this beautifully illustrated Portsmouth City Postcard, designed by British artist Julia Gash.\n\nFeaturing her signature hand-drawn style, this postcard captures Portsmouth’s most iconic landmarks - from the Spinnaker Tower to the historic seafront - all brought to life in bold lines and vibrant colours.\n\nPerfect for sending home, pinning on your wall, or keeping as a personal keepsake, it’s a fun and affordable way to show off your Portsmouth pride.',
       },
+      // Portsmouth City Magnet — add a second image slot
       '2': {
         'name': 'Portsmouth City Magnet',
         'price': '£4.50',
         'image':
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+        // Add images list; put your second image URL below
+        'images': [
+          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
+          'https://shop.upsu.net/cdn/shop/files/Portsmouth_City_Magnet_3_1024x1024@2x.jpg?v=1752230299', // TODO: paste your second image link here
+        ],
         'description':
             'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.\n\nPart of our Portsmouth City Collection, this magnet showcases Julia’s iconic hand-drawn design, celebrating the city’s most loved landmarks and seaside charm in her signature playful style.\n\nMade from durable tin plate, it\'s both lightweight and long-lasting - a perfect souvenir or small gift with a big personality.',
       },
@@ -88,12 +98,37 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Clean. Classic. Elevated.\n\nOur Signature T-shirts combine everyday comfort with premium detail. Featuring high-quality embroidery and a relaxed fit, they offer a fresh take on a staple piece. Lightweight and versatile, this tee is perfect for layering or wearing solo - an essential addition to any wardrobe.',
       },
+      // 7) Limited Edition Essential Zip Hoodies — 4 images
+      '7': {
+        'name': 'Limited Edition Essential Zip Hoodies',
+        'price': '£14.99',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+          'https://shop.upsu.net/cdn/shop/files/1000045774_07de1185-b921-47fa-b3a8-b1823478ca2b_1024x1024@2x.jpg?v=1749131089',
+          'https://shop.upsu.net/cdn/shop/files/Baby_Pink_Shopify_Image_1024x1024@2x.png?v=1749460435',
+          'https://shop.upsu.net/cdn/shop/files/Blue_Stone_Shopify_Image_1024x1024@2x.png?v=1749460441',
+        ],
+        'description':
+            'Redesigned with a fresh chest logo, our limited addition Baby Pink and Stone Blue Hoodies are ultra cosy made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile. ',
+      },
+
+      // 8) Essential T-Shirt — 2 images
+      '8': {
+        'name': 'Essential T-Shirt',
+        'price': '£6.99',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+          'https://shop.upsu.net/cdn/shop/files/LightBlueT-shirt_1024x1024@2x.png?v=1759827236',
+        ],
+        'description':
+            'Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe\'s been waiting for.',
+      },
     };
   }
-
-  String? selectedColor;
-  String? selectedSize;
-  int selectedImageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -102,19 +137,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         args is String ? args : (args is int ? args.toString() : '1');
     final productData = getProductData()[productId] ?? getProductData()['1']!;
     final isSignature = productId == '5' || productId == '6';
-    final images = isSignature
-        ? (productData['images'] as List<String>)
-        : [productData['image'] as String];
 
-    // Apply defaults (Sand + S if available, else first options)
-    if (isSignature) {
-      selectedColor ??= (productData['colors'] as List<String>).contains('Sand')
-          ? 'Sand'
-          : (productData['colors'] as List<String>).first;
-      selectedSize ??= (productData['sizes'] as List<String>).contains('S')
-          ? 'S'
-          : (productData['sizes'] as List<String>).first;
-    }
+    // Build the images list once per build
+    final List<String> images = (productData['images'] is List &&
+            (productData['images'] as List).isNotEmpty)
+        ? (productData['images'] as List).cast<String>() // ensure List<String>
+        : [productData['image'] as String];
 
     return Scaffold(
       body: Column(
@@ -130,17 +158,21 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // LEFT: Main image + thumbnails (signature only)
+                      // LEFT: main + thumbnails
                       Expanded(
                         flex: 1,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Main image shows current index
                             ClipRRect(
                               borderRadius: BorderRadius.circular(4),
                               child: AspectRatio(
                                 aspectRatio: 1.3,
                                 child: Image.network(
                                   images[selectedImageIndex],
+                                  key: ValueKey<int>(
+                                      selectedImageIndex), // force rebuild on change
                                   fit: BoxFit.cover,
                                   errorBuilder: (_, __, ___) => Container(
                                     color: Colors.grey[300],
@@ -150,36 +182,44 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ),
                               ),
                             ),
-                            if (isSignature) ...[
+                            if (images.length > 1) ...[
                               const SizedBox(height: 16),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                              // Thumbnails (click to change main image)
+                              Wrap(
+                                spacing: 12,
+                                runSpacing: 12,
                                 children: List.generate(images.length, (i) {
                                   final active = i == selectedImageIndex;
-                                  return GestureDetector(
-                                    onTap: () =>
-                                        setState(() => selectedImageIndex = i),
-                                    child: Container(
-                                      margin: const EdgeInsets.only(right: 12),
-                                      padding: active
-                                          ? const EdgeInsets.all(2)
-                                          : EdgeInsets.zero,
-                                      decoration: BoxDecoration(
-                                        border: active
-                                            ? Border.all(
-                                                color: Colors.black, width: 2)
-                                            : null,
-                                      ),
-                                      width: 70,
-                                      height: 70,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(2),
-                                        child: Image.network(
-                                          images[i],
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (_, __, ___) =>
-                                              Container(
-                                                  color: Colors.grey[300]),
+                                  return Material(
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                      onTap: () {
+                                        setState(() {
+                                          selectedImageIndex =
+                                              i; // change main image to clicked thumbnail
+                                        });
+                                      },
+                                      child: Container(
+                                        width: 70,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          border: active
+                                              ? Border.all(
+                                                  color: Colors.black, width: 2)
+                                              : null,
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(2),
+                                          child: Image.network(
+                                            images[i],
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (_, __, ___) =>
+                                                Container(
+                                                    color: Colors.grey[300]),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -190,8 +230,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ],
                         ),
                       ),
+
                       const SizedBox(width: 60),
-                      // RIGHT: Info / options
+
+                      // RIGHT: colour dropdown must also set selectedImageIndex
                       Expanded(
                         flex: 1,
                         child: Column(
@@ -224,13 +266,30 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                         const SizedBox(height: 8),
                                         DropdownButtonFormField<String>(
                                           value: selectedColor,
-                                          items: (productData['colors']
-                                                  as List<String>)
+                                          items: (productData['colors'] as List)
+                                              .cast<String>()
                                               .map((c) => DropdownMenuItem(
                                                   value: c, child: Text(c)))
                                               .toList(),
-                                          onChanged: (v) =>
-                                              setState(() => selectedColor = v),
+                                          onChanged: (v) {
+                                            setState(() {
+                                              selectedColor = v;
+                                              // Mapping for signature items
+                                              if (productId == '6') {
+                                                // T-Shirt: Indigo Blue -> 0, Sand -> 1
+                                                selectedImageIndex =
+                                                    (selectedColor == 'Sand')
+                                                        ? 1
+                                                        : 0;
+                                              } else if (productId == '5') {
+                                                // Hoodie: Ivory -> 1, Sage -> 0
+                                                selectedImageIndex =
+                                                    (selectedColor == 'Ivory')
+                                                        ? 1
+                                                        : 0;
+                                              }
+                                            });
+                                          },
                                           decoration: InputDecoration(
                                             border: OutlineInputBorder(
                                                 borderRadius:
