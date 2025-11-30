@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/product_page.dart';
 import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/header.dart';
 
@@ -13,18 +12,10 @@ class UnionShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Union Shop',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4d2963)),
-      ),
-      home: const HomeScreen(),
-      // By default, the app starts at the '/' route, which is the HomeScreen
       initialRoute: '/',
-      // When navigating to '/product', build and return the ProductPage
-      // In your browser, try this link: http://localhost:49856/#/product
       routes: {
-        '/product': (context) => const ProductPage(),
+        '/': (context) => const HomeScreen(),
         '/product-detail': (context) => const ProductDetailPage(),
       },
     );
@@ -36,10 +27,6 @@ class HomeScreen extends StatelessWidget {
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-  }
-
-  void navigateToProduct(BuildContext context) {
-    Navigator.pushNamed(context, '/product');
   }
 
   void placeholderCallbackForButtons() {

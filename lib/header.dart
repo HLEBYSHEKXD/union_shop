@@ -9,6 +9,7 @@ class AppHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Purple info bar
         Container(
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -19,77 +20,49 @@ class AppHeader extends StatelessWidget {
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
         ),
+        // Main nav bar
         Container(
           color: Colors.white,
           padding: const EdgeInsets.symmetric(horizontal: 16),
           height: 64,
           child: Row(
             children: [
-              GestureDetector(
-                onTap: _noop,
-                child: Image.network(
-                  'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
-                  height: 28,
-                  fit: BoxFit.contain,
-                  errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-                ),
+              Image.network(
+                'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
+                height: 28,
+                fit: BoxFit.contain,
+                errorBuilder: (_, __, ___) => const SizedBox.shrink(),
               ),
               const SizedBox(width: 24),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(
-                      onPressed: _noop,
-                      child: const Text('Home'),
-                    ),
+                    TextButton(onPressed: _noop, child: const Text('Home')),
+                    const SizedBox(width: 8),
+                    TextButton(onPressed: _noop, child: const Text('Shop')),
                     const SizedBox(width: 8),
                     TextButton(
-                      onPressed: _noop,
-                      child: const Text('Shop'),
-                    ),
+                        onPressed: _noop, child: const Text('The Print Shack')),
                     const SizedBox(width: 8),
-                    TextButton(
-                      onPressed: _noop,
-                      child: const Text('The Print Shack'),
-                    ),
+                    TextButton(onPressed: _noop, child: const Text('SALE!')),
                     const SizedBox(width: 8),
-                    TextButton(
-                      onPressed: _noop,
-                      child: const Text('SALE!'),
-                    ),
+                    TextButton(onPressed: _noop, child: const Text('About')),
                     const SizedBox(width: 8),
-                    TextButton(
-                      onPressed: _noop,
-                      child: const Text('About'),
-                    ),
-                    const SizedBox(width: 8),
-                    TextButton(
-                      onPressed: _noop,
-                      child: const Text('UPSU.net'),
-                    ),
+                    TextButton(onPressed: _noop, child: const Text('UPSU.net')),
                   ],
                 ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  IconButton(onPressed: _noop, icon: const Icon(Icons.search)),
                   IconButton(
-                    onPressed: _noop,
-                    icon: const Icon(Icons.search),
-                  ),
+                      onPressed: _noop, icon: const Icon(Icons.person_outline)),
                   IconButton(
-                    onPressed: _noop,
-                    icon: const Icon(Icons.person_outline),
-                  ),
-                  IconButton(
-                    onPressed: _noop,
-                    icon: const Icon(Icons.shopping_bag_outlined),
-                  ),
-                  IconButton(
-                    onPressed: _noop,
-                    icon: const Icon(Icons.menu),
-                  ),
+                      onPressed: _noop,
+                      icon: const Icon(Icons.shopping_bag_outlined)),
+                  IconButton(onPressed: _noop, icon: const Icon(Icons.menu)),
                 ],
               ),
             ],
