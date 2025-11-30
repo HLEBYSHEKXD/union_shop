@@ -18,11 +18,11 @@ class AppFooter extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Column 1: Opening Hours
-              Expanded(
+              const Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'Opening Hours',
                       style: TextStyle(
                         fontSize: 18,
@@ -30,59 +30,59 @@ class AppFooter extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       '❄️ Winter Break Closure Dates ❄️',
                       style:
                           TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Closing 4pm 19/12/2025',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Reopening 10am 05/01/2026',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Last post date: 12pm on 18/12/2025',
                       style:
                           TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       '-----------------------',
                       style: TextStyle(fontSize: 14),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       '(Term Time)',
                       style:
                           TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Monday - Friday 10am - 4pm',
                       style: TextStyle(fontSize: 14),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       '(Outside of Term Time / Consolidation Weeks)',
                       style:
                           TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Monday - Friday 10am - 3pm',
                       style: TextStyle(fontSize: 14),
                     ),
-                    const SizedBox(height: 16),
-                    const Text(
+                    SizedBox(height: 16),
+                    Text(
                       'Purchase online 24/7',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
@@ -223,8 +223,8 @@ class AppFooter extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          Row(
-            children: const [
+          const Row(
+            children: [
               Text('© 2025, ',
                   style: TextStyle(fontSize: 12, color: Colors.grey)),
               Text('upsu-store',
