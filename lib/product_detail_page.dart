@@ -60,29 +60,33 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       '5': {
         'name': 'Signature Hoodie',
         'price': '£32.99',
-        'image': 'IMAGE_URL_SIGNATURE_HOODIE_1', // main image (replace)
+        // main image now set to first images entry (no placeholder)
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
         'images': [
-          'IMAGE_URL_SIGNATURE_HOODIE_1', // replace
-          'IMAGE_URL_SIGNATURE_HOODIE_2', // replace
-          'IMAGE_URL_SIGNATURE_HOODIE_3', // replace
+          'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+          'https://shop.upsu.net/cdn/shop/files/Ivory_Hoodie_1024x1024@2x.png?v=1745583522',
+          'https://shop.upsu.net/cdn/shop/files/Outdoor_Shot_New_Hoodies_1024x1024@2x.png?v=1745583567',
         ],
-        'colors': ['Ivory', 'Charcoal', 'Forest'],
-        'sizes': ['S', 'M', 'L', 'XL'],
-        'description': 'Soft unisex hoodie with Portsmouth signature print.'
+        'colors': ['Sage', 'Ivory'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
+        'description':
+            'Crafted for comfort, elevated with detail — our Signature hoodies feature premium embroidery that sets them apart from our classic range. With a clean design and an oversized fit, they bring a refined edge to a classic silhouette. Whether you\'re layering up or keeping it simple, this is your new go-to for effortless style.',
       },
       // Signature Range T-Shirt
       '6': {
         'name': 'Signature T-Shirt',
         'price': '£14.99',
-        'image': 'IMAGE_URL_SIGNATURE_TSHIRT_1', // main image (replace)
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
         'images': [
-          'IMAGE_URL_SIGNATURE_TSHIRT_1', // replace
-          'IMAGE_URL_SIGNATURE_TSHIRT_2', // replace
-          'IMAGE_URL_SIGNATURE_TSHIRT_3', // replace
+          'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+          'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Sand_2_e4a45eaf-fe5f-419e-bb2c-dd437ae6f594_1024x1024@2x.jpg?v=1758290534',
         ],
-        'colors': ['Ivory', 'Navy', 'Black'],
-        'sizes': ['S', 'M', 'L', 'XL'],
-        'description': 'Classic tee with Portsmouth signature print.'
+        'colors': ['Sand', 'Indigo Blue'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
+        'description':
+            'Clean. Classic. Elevated.\n\nOur Signature T-shirts combine everyday comfort with premium detail. Featuring high-quality embroidery and a relaxed fit, they offer a fresh take on a staple piece. Lightweight and versatile, this tee is perfect for layering or wearing solo - an essential addition to any wardrobe.',
       },
     };
   }
@@ -101,6 +105,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     final images = isSignature
         ? (productData['images'] as List<String>)
         : [productData['image'] as String];
+
+    // Apply defaults (Sand + S if available, else first options)
+    if (isSignature) {
+      selectedColor ??= (productData['colors'] as List<String>).contains('Sand')
+          ? 'Sand'
+          : (productData['colors'] as List<String>).first;
+      selectedSize ??= (productData['sizes'] as List<String>).contains('S')
+          ? 'S'
+          : (productData['sizes'] as List<String>).first;
+    }
 
     return Scaffold(
       body: Column(
@@ -131,8 +145,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   errorBuilder: (_, __, ___) => Container(
                                     color: Colors.grey[300],
                                     child: const Center(
-                                      child: Icon(Icons.image_not_supported),
-                                    ),
+                                        child: Icon(Icons.image_not_supported)),
                                   ),
                                 ),
                               ),
@@ -144,9 +157,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 children: List.generate(images.length, (i) {
                                   final active = i == selectedImageIndex;
                                   return GestureDetector(
-                                    onTap: () {
-                                      setState(() => selectedImageIndex = i);
-                                    },
+                                    onTap: () =>
+                                        setState(() => selectedImageIndex = i),
                                     child: Container(
                                       margin: const EdgeInsets.only(right: 12),
                                       padding: active
@@ -167,8 +179,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           fit: BoxFit.cover,
                                           errorBuilder: (_, __, ___) =>
                                               Container(
-                                            color: Colors.grey[300],
-                                          ),
+                                                  color: Colors.grey[300]),
                                         ),
                                       ),
                                     ),
@@ -186,98 +197,93 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              productData['name'] as String,
-                              style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            Text(productData['name'] as String,
+                                style: const TextStyle(
+                                    fontSize: 32, fontWeight: FontWeight.bold)),
                             const SizedBox(height: 16),
-                            Text(
-                              productData['price'] as String,
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            Text(productData['price'] as String,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w600)),
                             const SizedBox(height: 8),
-                            const Text(
-                              'Tax included.',
-                              style:
-                                  TextStyle(fontSize: 14, color: Colors.grey),
-                            ),
+                            const Text('Tax included.',
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.grey)),
                             const SizedBox(height: 32),
-
-                            // Signature-only options
                             if (isSignature) ...[
-                              // Color
-                              const Text(
-                                'Color',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              DropdownButtonFormField<String>(
-                                value: selectedColor,
-                                items: (productData['colors'] as List<String>)
-                                    .map((c) => DropdownMenuItem(
-                                          value: c,
-                                          child: Text(c),
-                                        ))
-                                    .toList(),
-                                onChanged: (v) =>
-                                    setState(() => selectedColor = v),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('Colour',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600)),
+                                        const SizedBox(height: 8),
+                                        DropdownButtonFormField<String>(
+                                          value: selectedColor,
+                                          items: (productData['colors']
+                                                  as List<String>)
+                                              .map((c) => DropdownMenuItem(
+                                                  value: c, child: Text(c)))
+                                              .toList(),
+                                          onChanged: (v) =>
+                                              setState(() => selectedColor = v),
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 12,
+                                                    vertical: 10),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 10),
-                                ),
-                              ),
-                              const SizedBox(height: 24),
-
-                              // Size
-                              const Text(
-                                'Size',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              DropdownButtonFormField<String>(
-                                value: selectedSize,
-                                items: (productData['sizes'] as List<String>)
-                                    .map((s) => DropdownMenuItem(
-                                          value: s,
-                                          child: Text(s),
-                                        ))
-                                    .toList(),
-                                onChanged: (v) =>
-                                    setState(() => selectedSize = v),
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
+                                  const SizedBox(width: 24),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const Text('Size',
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600)),
+                                        const SizedBox(height: 8),
+                                        DropdownButtonFormField<String>(
+                                          value: selectedSize,
+                                          items: (productData['sizes']
+                                                  as List<String>)
+                                              .map((s) => DropdownMenuItem(
+                                                  value: s, child: Text(s)))
+                                              .toList(),
+                                          onChanged: (v) =>
+                                              setState(() => selectedSize = v),
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 12,
+                                                    vertical: 10),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 10),
-                                ),
+                                ],
                               ),
                               const SizedBox(height: 24),
                             ],
-
-                            // Quantity
-                            const Text(
-                              'Quantity',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
+                            const Text('Quantity',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.w600)),
                             const SizedBox(height: 8),
                             SizedBox(
                               width: 100,
@@ -286,8 +292,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 textAlign: TextAlign.center,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
+                                      borderRadius: BorderRadius.circular(4)),
                                   contentPadding:
                                       const EdgeInsets.symmetric(vertical: 12),
                                 ),
@@ -295,8 +300,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                             ),
                             const SizedBox(height: 32),
-
-                            // Add to cart
                             SizedBox(
                               width: double.infinity,
                               child: OutlinedButton(
@@ -306,22 +309,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 16),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
+                                      borderRadius: BorderRadius.circular(4)),
                                 ),
                                 onPressed: placeholderCallbackForButtons,
-                                child: const Text(
-                                  'ADD TO CART',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                child: const Text('ADD TO CART',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600)),
                               ),
                             ),
                             const SizedBox(height: 16),
-
-                            // Shop Pay
                             SizedBox(
                               width: double.infinity,
                               child: ElevatedButton(
@@ -331,46 +328,32 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 16),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
+                                      borderRadius: BorderRadius.circular(4)),
                                 ),
                                 onPressed: placeholderCallbackForButtons,
-                                child: const Text(
-                                  'Buy with Shop Pay',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
+                                child: const Text('Buy with Shop Pay',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600)),
                               ),
                             ),
                             const SizedBox(height: 12),
-
                             Center(
                               child: GestureDetector(
                                 onTap: placeholderCallbackForButtons,
-                                child: const Text(
-                                  'More payment options',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    decoration: TextDecoration.underline,
-                                  ),
-                                ),
+                                child: const Text('More payment options',
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        decoration: TextDecoration.underline)),
                               ),
                             ),
                             const SizedBox(height: 32),
-
-                            Text(
-                              productData['description'] as String,
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey,
-                                height: 1.6,
-                              ),
-                            ),
+                            Text(productData['description'] as String,
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.grey,
+                                    height: 1.6)),
                             const SizedBox(height: 24),
-
-                            // Share row
                             Row(
                               children: [
                                 GestureDetector(
@@ -380,14 +363,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       Icon(Icons.share,
                                           color: Colors.blue, size: 18),
                                       SizedBox(width: 8),
-                                      Text(
-                                        'SHARE',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.blue,
-                                        ),
-                                      ),
+                                      Text('SHARE',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.blue)),
                                     ],
                                   ),
                                 ),
@@ -399,14 +379,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       Icon(Icons.favorite_border,
                                           color: Colors.blue, size: 18),
                                       SizedBox(width: 8),
-                                      Text(
-                                        'TWEET',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.blue,
-                                        ),
-                                      ),
+                                      Text('TWEET',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.blue)),
                                     ],
                                   ),
                                 ),
@@ -418,14 +395,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       Icon(Icons.bookmark_border,
                                           color: Colors.red, size: 18),
                                       SizedBox(width: 8),
-                                      Text(
-                                        'PIN IT',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.red,
-                                        ),
-                                      ),
+                                      Text('PIN IT',
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.red)),
                                     ],
                                   ),
                                 ),
@@ -449,16 +423,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           padding: const EdgeInsets.symmetric(vertical: 16),
                         ),
                         onPressed: () => navigateBack(context),
-                        child: const Text(
-                          'BACK TO PORTSMOUTH CITY COLLECTION',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w600),
-                        ),
+                        child: const Text('BACK TO PORTSMOUTH CITY COLLECTION',
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.w600)),
                       ),
                     ),
                   ),
                 ),
-                // Footer at end (scrolls with content)
                 const SizedBox(height: 32),
                 const AppFooter(),
                 const SizedBox(height: 16),
