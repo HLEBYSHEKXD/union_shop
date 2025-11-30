@@ -202,66 +202,35 @@ class AppFooter extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Social media icons
               IconButton(
-                onPressed: _noop,
-                icon: const Icon(Icons.facebook, size: 32),
-                color: Colors.black,
-              ),
+                  onPressed: _noop,
+                  icon: const Icon(Icons.facebook, size: 32),
+                  color: Colors.black),
               const SizedBox(width: 16),
               IconButton(
-                onPressed: _noop,
-                icon:
-                    const Icon(Icons.message, size: 32), // Twitter placeholder
-                color: Colors.black,
-              ),
-
+                  onPressed: _noop,
+                  icon: const Icon(Icons.message, size: 32),
+                  color: Colors.black),
               const Spacer(),
-
-              // Payment methods image (placeholder)
-              // PASTE YOUR IMAGE URL HERE:
-              Image.network(
-                'YOUR_PAYMENT_METHODS_IMAGE_URL_HERE',
+              // Payment methods image from assets
+              SizedBox(
                 height: 40,
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => Container(
-                  height: 40,
-                  width: 300,
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child:
-                        Text('Payment methods', style: TextStyle(fontSize: 12)),
-                  ),
+                child: Image.asset(
+                  'assets/images/payment_method.png',
+                  fit: BoxFit.contain,
                 ),
               ),
             ],
           ),
-
           const SizedBox(height: 24),
-
-          // Copyright
           Row(
-            children: [
-              const Text(
-                '© 2025, ',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-              TextButton(
-                onPressed: _noop,
-                style: TextButton.styleFrom(
-                  padding: EdgeInsets.zero,
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                ),
-                child: const Text(
-                  'upsu-store',
-                  style: TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ),
-              const Text(
-                ' Powered by Shopify',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
-              ),
+            children: const [
+              Text('© 2025, ',
+                  style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Text('upsu-store',
+                  style: TextStyle(fontSize: 12, color: Colors.grey)),
+              Text(' Powered by Shopify',
+                  style: TextStyle(fontSize: 12, color: Colors.grey)),
             ],
           ),
         ],
