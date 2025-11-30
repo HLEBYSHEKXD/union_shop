@@ -19,6 +19,8 @@ class ProductDetailPage extends StatelessWidget {
 
   Map<String, Map<String, String>> getProductData() {
     return {
+
+      // Portsmouth City Collection
       '1': {
         'name': 'Portsmouth City Postcard',
         'price': '£1.00',
@@ -50,6 +52,20 @@ class ProductDetailPage extends StatelessWidget {
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
         'description':
             'Jot down your thoughts, sketches, or seaside daydreams with our charming Portsmouth City Notebook, featuring the artwork of renowned illustrator Julia Gash.\n\nPart of our Portsmouth City Collection, this notebook showcases Julia’s iconic hand-drawn design, capturing the city\'s much-loved landmarks and coastal charm in her signature playful style.\n\nWith plain, high-quality pages and a sturdy cover, it\'s perfect for notes, doodles, or travel memories – a practical yet inspiring gift or souvenir with true Portsmouth personality.',
+      },
+
+      // Signature Range
+      '5': {
+        'name': 'Signature Hoodie',
+        'price': '£32.99',
+        'image': 'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+        'description': 'Soft unisex hoodie with Portsmouth signature print.',
+      },
+      '6': {
+        'name': 'Signature T-Shirt',
+        'price': '£14.99',
+        'image': 'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+        'description': 'Classic tee with Portsmouth signature print.',
       },
     };
   }

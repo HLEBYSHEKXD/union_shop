@@ -43,6 +43,7 @@ class HomeScreen extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   // Hero Section
                   SizedBox(
@@ -113,6 +114,52 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Signature Range section
+                  const SizedBox(height: 32),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12),
+                    child: Center(
+                      child: Text(
+                        'SIGNATURE RANGE',
+                        style: TextStyle(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: GridView(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.80,
+                        mainAxisSpacing: 24,
+                        crossAxisSpacing: 24,
+                      ),
+                      children: const [
+                        ProductCard(
+                          id: '5',
+                          title: 'Signature Hoodie',
+                          price: '£32.99',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                        ),
+                        ProductCard(
+                          id: '6',
+                          title: 'Signature T-Shirt',
+                          price: '£14.99',
+                          imageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
                         ),
                       ],
                     ),
