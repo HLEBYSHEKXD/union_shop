@@ -55,8 +55,12 @@ class ProductDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productId =
-        ModalRoute.of(context)?.settings.arguments as String? ?? '1';
+    final args = ModalRoute.of(context)?.settings.arguments;
+    final productId = args is String
+        ? args
+        : args is int
+            ? args.toString()
+            : '1';
     final productData = getProductData()[productId]!;
 
     return Scaffold(

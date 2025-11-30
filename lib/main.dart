@@ -142,24 +142,28 @@ class HomeScreen extends StatelessWidget {
                             mainAxisSpacing: 48,
                             children: const [
                               ProductCard(
+                                id: '1',
                                 title: 'Portsmouth City Postcard',
                                 price: '£1.00',
                                 imageUrl:
                                     'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                               ),
                               ProductCard(
+                                id: '2',
                                 title: 'Portsmouth City Magnet',
                                 price: '£4.50',
                                 imageUrl:
                                     'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                               ),
                               ProductCard(
+                                id: '3',
                                 title: 'Portsmouth City Bookmark',
                                 price: '£3.00',
                                 imageUrl:
                                     'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
                               ),
                               ProductCard(
+                                id: '4',
                                 title: 'Portsmouth City Notebook',
                                 price: '£7.50',
                                 imageUrl:
@@ -197,12 +201,14 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
+  final String id;
   final String title;
   final String price;
   final String imageUrl;
 
   const ProductCard({
     super.key,
+    required this.id,
     required this.title,
     required this.price,
     required this.imageUrl,
@@ -210,9 +216,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, '/product-detail');
+        Navigator.pushNamed(
+          context,
+          '/product-detail',
+          arguments: id, // ensure a unique id per item
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
