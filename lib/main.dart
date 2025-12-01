@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/header.dart';
@@ -30,19 +31,77 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
+class _Slide {
+  final String imageUrl;
+  final String title;
+  final String subtitle;
+  final String buttonText; // NEW
+  final String? buttonRoute; // OPTIONAL: per‑slide navigation
+  const _Slide({
+    required this.imageUrl,
+    required this.title,
+    required this.subtitle,
+    required this.buttonText, // NEW
+    this.buttonRoute, // OPTIONAL
+  });
+}
+
 class _HomeScreenState extends State<HomeScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+  Timer? _autoPlayTimer;
 
-  final List<String> _heroImages = const [
-    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-    'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
-    'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
-    'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+  // Replace _heroImages with _slides
+  final List<_Slide> _slides = const [
+    _Slide(
+      imageUrl:
+          'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+      title: 'Essential Range - Over 20% Off!',
+      subtitle:
+          'Over 20% off our essential range. Come and grab yours while stocks last!',
+      buttonText: 'BROWSE COLLECTION',
+      buttonRoute: '/product-detail',
+    ),
+    _Slide(
+      imageUrl:
+          'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+      title: 'The Print Shack',
+      subtitle:
+          'Let\'s create something uniquely you with our personalisation service — From £3 for one line of text!',
+      buttonText: 'FIND OUT MORE',
+      buttonRoute: '/product-detail',
+    ),
+    _Slide(
+      imageUrl:
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS76eQqot6FBCBRzVxbKp1EQ4YekVoFDwbhww&s',
+      title: 'Hungry?',
+      subtitle: 'We got this',
+      buttonText: 'ORDER DOMINO\'S PIZZA NOW',
+      buttonRoute: '/product-detail',
+    ),
+    _Slide(
+      imageUrl: 'assets/images/harry_law_bedroom_600x400.png',
+      title: 'What\'s your next move...',
+      subtitle: 'Are you with us?',
+      buttonText: 'FIND YOUR STUDENT ACCOMMODATION',
+      buttonRoute: '/product-detail',
+    ),
   ];
 
+  @override
+  void initState() {
+    super.initState();
+    _startAutoPlay();
+  }
+
+  void _startAutoPlay() {
+    _autoPlayTimer?.cancel();
+    _autoPlayTimer =
+        Timer.periodic(const Duration(seconds: 10), (_) => _goNext());
+  }
+
   void _goPrev() {
-    final last = _heroImages.length - 1;
+    final last = _slides.length - 1;
     final target = _currentPage == 0 ? last : _currentPage - 1;
     _pageController.animateToPage(
       target,
@@ -52,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _goNext() {
-    final last = _heroImages.length - 1;
+    final last = _slides.length - 1;
     final target = _currentPage == last ? 0 : _currentPage + 1;
     _pageController.animateToPage(
       target,
@@ -63,6 +122,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
+    _autoPlayTimer?.cancel();
     _pageController.dispose();
     super.dispose();
   }
@@ -77,36 +137,32 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                // Hero Section (carousel with arrow bar)
+                // Hero Section (carousel with changing text)
                 SizedBox(
                   height: 400,
                   width: double.infinity,
                   child: Stack(
                     children: [
-                      // Images
                       Positioned.fill(
                         child: PageView.builder(
                           controller: _pageController,
-                          onPageChanged: (index) =>
-                              setState(() => _currentPage = index),
-                          itemCount: _heroImages.length,
+                          itemCount: _slides.length,
+                          onPageChanged: (i) =>
+                              setState(() => _currentPage = i),
                           itemBuilder: (context, index) {
+                            final s = _slides[index];
                             return Stack(
                               fit: StackFit.expand,
                               children: [
-                                Image.network(
-                                  _heroImages[index],
-                                  fit: BoxFit.cover,
-                                ),
+                                Image.network(s.imageUrl, fit: BoxFit.cover),
                                 Container(
-                                  color: Colors.black.withOpacity(0.6),
-                                ),
+                                    color: Colors.black.withOpacity(0.45)),
                               ],
                             );
                           },
                         ),
                       ),
-                      // Content overlay
+                      // Overlay text driven by _currentPage
                       Positioned(
                         left: 24,
                         right: 24,
@@ -114,41 +170,42 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text(
-                              'Essential Range - Over 20% Off!',
-                              style: TextStyle(
+                            Text(
+                              _slides[_currentPage].title,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                                height: 1.2,
                               ),
                             ),
-                            const SizedBox(height: 16),
-                            const Text(
-                              "Over 20% off our Essential Range. Come and get yours while stocks last!",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                height: 1.5,
-                              ),
+                            const SizedBox(height: 12),
+                            Text(
+                              _slides[_currentPage].subtitle,
                               textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
-                            const SizedBox(height: 32),
+                            const SizedBox(height: 24),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                final s = _slides[_currentPage];
+                                if (s.buttonRoute != null) {
+                                  Navigator.pushNamed(context, s.buttonRoute!);
+                                }
+                              },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
                                 foregroundColor: Colors.white,
                                 shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.zero,
-                                ),
+                                    borderRadius: BorderRadius.zero),
                               ),
-                              child: const Text(
-                                'BROWSE COLLECTION',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  letterSpacing: 1,
-                                ),
+                              child: Text(
+                                _slides[_currentPage]
+                                    .buttonText, // CHANGED: per‑slide label
+                                style: const TextStyle(letterSpacing: 1),
                               ),
                             ),
                           ],
@@ -177,11 +234,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                   color: Colors.white,
                                   splashRadius: 20,
                                 ),
-                                const SizedBox(width: 4),
                                 Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: List.generate(
-                                    _heroImages.length,
+                                    _slides.length,
                                     (i) => GestureDetector(
                                       onTap: () =>
                                           _pageController.animateToPage(
@@ -207,7 +263,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(width: 4),
                                 IconButton(
                                   tooltip: 'Next',
                                   onPressed: _goNext,
