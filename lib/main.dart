@@ -482,21 +482,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
                             ),
                             Product(
-                              id: '5',
+                              id: '9',
                               title: 'Portsmouth City Keyring',
                               price: '£6.75',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_540x.jpg?v=1757419192',
                             ),
                             Product(
-                              id: '6',
+                              id: '10',
                               title: 'Portsmouth City Coaster',
                               price: '£4.50',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_540x.jpg?v=1757419170',
                             ),
                             Product(
-                              id: '7',
+                              id: '11',
                               title: 'Portsmouth City Water Bottle',
                               price: '£15.00',
                               imageUrl:

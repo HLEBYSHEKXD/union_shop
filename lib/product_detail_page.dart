@@ -132,6 +132,40 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe\'s been waiting for.',
       },
+
+      // NEW: Portsmouth City Keyring
+      '9': {
+        'name': 'Portsmouth City Keyring',
+        'price': '£6.75',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_1024x1024@2x.jpg?v=1757419192',
+        'description':
+            'Carry a piece of Portsmouth wherever you go with our delightful Portsmouth City Keyring, featuring the artwork of renowned illustrator Julia Gash. \n\nPart of our Portsmouth City Collection, this keyring displays Julia’s iconic hand-drawn design, celebrating the city’s famous landmarks and seaside spirit in her signature playful style. \n\nMade from durable acrylic with a high-quality finish, it’s lightweight, practical, and full of charm – a perfect little keepsake or gift that brings big Portsmouth personality to your keys or bag.',
+      },
+
+      // NEW: Portsmouth City Coaster
+      '10': {
+        'name': 'Portsmouth City Coaster',
+        'price': '£4.50',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_1024x1024@2x.jpg?v=1757419170',
+        'description':
+            'Add a touch of Portsmouth pride to your coffee table, desk, or kitchen with our charming Portsmouth City Coaster, featuring the artwork of renowned illustrator Julia Gash. \n\nPart of our Portsmouth City Collection, this coaster showcases Julia’s iconic hand-drawn design, capturing the city’s beloved landmarks and coastal character in her signature playful style. \n\nCrafted from high-quality materials with a glossy finish and cork backing, it’s both practical and stylish – the perfect souvenir or thoughtful gift with a big personality.',
+      },
+
+      // NEW: Portsmouth City Water Bottle
+      '11': {
+        'name': 'Portsmouth City Water Bottle',
+        'price': '£15.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
+          'https://shop.upsu.net/cdn/shop/files/Portsmouth_City_Water_Bottle_6_1024x1024@2x.jpg?v=1755252015',
+        ],
+        'description':
+            'Stay hydrated in style with this eye-catching 850ml Portsmouth City Water Bottle, featuring artwork by celebrated British illustrator Julia Gash. \n\nAdorned with her distinctive hand-drawn design, the bottle showcases Portsmouth’s most beloved landmarks - from the iconic Spinnaker Tower to historic seafront scenes - all captured in bold lines and vibrant colours. \n\nMade from durable, eco-friendly materials, it’s perfect for campus life, day trips, or simply showing off your love for our coastal city. A practical and charming 850ml keepsake that brings a splash of Portsmouth wherever you go.',
+      },
     };
   }
 
@@ -286,8 +320,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    color:
-                                        Color.fromARGB(255, 77, 123, 168),
+                                    color: Color.fromARGB(255, 77, 123, 168),
                                   ),
                                 ),
                               ],
