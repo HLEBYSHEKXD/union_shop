@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/product_detail_page.dart';
 import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
+import 'package:union_shop/product_list_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -19,6 +20,8 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/product-detail': (context) => const ProductDetailPage(),
+        '/products': (context) =>
+            const ProductListPage(), // NEW universal list page
       },
     );
   }
@@ -440,8 +443,68 @@ class _HomeScreenState extends State<HomeScreen> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      // TODO: navigate to a catalog route or perform an action
-                      Navigator.pushNamed(context, '/product-detail');
+                      Navigator.pushNamed(
+                        context,
+                        '/products',
+                        arguments: ProductListArgs(
+                          pageTitle: 'Portsmouth City Collection',
+                          heroImageUrl:
+                              'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                          introText:
+                              'Explore the Portsmouth City Collection – postcards, magnets, bookmarks, notebooks, keyrings, coasters and more.',
+                          products: const [
+                            Product(
+                              id: 'postcard',
+                              title: 'Portsmouth City Postcard',
+                              price: '£1.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+                            ),
+                            Product(
+                              id: 'magnet',
+                              title: 'Portsmouth City Magnet',
+                              price: '£4.50',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                            ),
+                            Product(
+                              id: 'bookmark',
+                              title: 'Portsmouth City Bookmark',
+                              price: '£3.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                            ),
+                            Product(
+                              id: 'notebook',
+                              title: 'Portsmouth City Notebook',
+                              price: '£7.50',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                            ),
+                            Product(
+                              id: 'keyring',
+                              title: 'Portsmouth City Keyring',
+                              price: '£6.75',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                            ),
+                            Product(
+                              id: 'coaster',
+                              title: 'Portsmouth City Coaster',
+                              price: '£4.50',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                            ),
+                            Product(
+                              id: 'bottle',
+                              title: 'Portsmouth City Water Bottle',
+                              price: '£15.00',
+                              imageUrl:
+                                  'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                            ),
+                          ],
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF4d2963),
