@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             const Text(
-                              'Placeholder Hero Title',
+                              'Essential Range - Over 20% Off!',
                               style: TextStyle(
                                 fontSize: 32,
                                 fontWeight: FontWeight.bold,
@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             const Text(
-                              "This is placeholder text for the hero section.",
+                              "Over 20% off our Essential Range. Come and get yours while stocks last!",
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               child: const Text(
-                                'BROWSE PRODUCTS',
+                                'BROWSE COLLECTION',
                                 style:
                                     TextStyle(fontSize: 14, letterSpacing: 1),
                               ),
@@ -135,8 +135,9 @@ class HomeScreen extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.80,
-                      mainAxisSpacing: 24,
+                      childAspectRatio:
+                          0.70, // CHANGE from 0.80 to 0.70 (gives more height)
+                      mainAxisSpacing: 40, // INCREASE from 24 to 40
                       crossAxisSpacing: 24,
                     ),
                     children: const [
@@ -146,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                         price: '£14.99',
                         oldPrice: '£20.00', // NEW
                         imageUrl:
-                            'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089', // TODO
+                            'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
                       ),
                       ProductCard(
                         id: '8',
@@ -154,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                         price: '£6.99',
                         oldPrice: '£10.00', // NEW
                         imageUrl:
-                            'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236', // TODO
+                            'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
                       ),
                     ],
                   ),
@@ -183,8 +184,9 @@ class HomeScreen extends StatelessWidget {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.80,
-                      mainAxisSpacing: 24,
+                      childAspectRatio:
+                          0.70, // CHANGE from 0.80 to 0.70 (gives more height)
+                      mainAxisSpacing: 40, // INCREASE from 24 to 40
                       crossAxisSpacing: 24,
                     ),
                     children: const [
@@ -228,7 +230,8 @@ class HomeScreen extends StatelessWidget {
                           crossAxisCount:
                               MediaQuery.of(context).size.width > 600 ? 2 : 1,
                           crossAxisSpacing: 24,
-                          mainAxisSpacing: 48,
+                          mainAxisSpacing:
+                              64, // INCREASE vertical gap between rows
                           children: const [
                             ProductCard(
                               id: '1',
@@ -295,53 +298,55 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () =>
-          Navigator.pushNamed(context, '/product-detail', arguments: id),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: Image.network(imageUrl, fit: BoxFit.cover),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 24), // ADD margin to separate rows
+      child: InkWell(
+        onTap: () =>
+            Navigator.pushNamed(context, '/product-detail', arguments: id),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: Image.network(imageUrl, fit: BoxFit.cover),
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            title,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-          ),
-          const SizedBox(height: 4),
-          // NEW: price row with strike-through old price
-          Row(
-            children: [
-              if (oldPrice != null) ...[
+            const SizedBox(height: 8),
+            Text(
+              title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                if (oldPrice != null) ...[
+                  Text(
+                    oldPrice!,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey,
+                      decoration: TextDecoration.lineThrough,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ],
                 Text(
-                  oldPrice!,
-                  style: const TextStyle(
+                  price,
+                  style: TextStyle(
                     fontSize: 14,
-                    color: Colors.grey,
-                    decoration: TextDecoration.lineThrough,
+                    color: Colors.blue.shade700,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(width: 8),
               ],
-              Text(
-                price,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: const Color.fromARGB(255, 77, 123, 168),
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
