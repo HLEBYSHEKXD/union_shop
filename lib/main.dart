@@ -451,56 +451,56 @@ class _HomeScreenState extends State<HomeScreen> {
                           heroImageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                           introText:
-                              'Explore the Portsmouth City Collection – postcards, magnets, bookmarks, notebooks, keyrings, coasters and more.',
+                              'We\'re excited to launch the Portsmouth City Collection, featuring products by renowned British illustrator Julia Gash, now available in our Students’ Union Shop!\n\nThis unique collection celebrates our vibrant city through Julia’s iconic hand-drawn style - full of charm, character, and local landmarks that students and visitors alike will instantly recognise. From the Spinnaker Tower to The King\'s Theatre, each design captures the spirit of Portsmouth in bold lines and colourful detail.\n\nAvailable in postcards, magnets, bookmarks and water bottles, these items make perfect mementos, gifts, or affordable keepsakes - whether you’re a new student, proud local, or just passing through.',
                           products: const [
                             Product(
-                              id: 'postcard',
+                              id: '1',
                               title: 'Portsmouth City Postcard',
                               price: '£1.00',
                               imageUrl:
                                   'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                             ),
                             Product(
-                              id: 'magnet',
+                              id: '2',
                               title: 'Portsmouth City Magnet',
                               price: '£4.50',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
                             ),
                             Product(
-                              id: 'bookmark',
+                              id: '3',
                               title: 'Portsmouth City Bookmark',
                               price: '£3.00',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityBookmark1_1024x1024@2x.jpg?v=1752230004',
                             ),
                             Product(
-                              id: 'notebook',
+                              id: '4',
                               title: 'Portsmouth City Notebook',
                               price: '£7.50',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityNotebook_1024x1024@2x.jpg?v=1757419215',
                             ),
                             Product(
-                              id: 'keyring',
+                              id: '5',
                               title: 'Portsmouth City Keyring',
                               price: '£6.75',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityKeyring_540x.jpg?v=1757419192',
                             ),
                             Product(
-                              id: 'coaster',
+                              id: '6',
                               title: 'Portsmouth City Coaster',
                               price: '£4.50',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityCoaster_540x.jpg?v=1757419170',
                             ),
                             Product(
-                              id: 'bottle',
+                              id: '7',
                               title: 'Portsmouth City Water Bottle',
                               price: '£15.00',
                               imageUrl:
-                                  'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                                  'https://shop.upsu.net/cdn/shop/files/PortsmouthCityWaterBottle5_1024x1024@2x.jpg?v=1755251995',
                             ),
                           ],
                         ),
