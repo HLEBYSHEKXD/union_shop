@@ -23,8 +23,49 @@ class UnionShopApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  final List<String> _heroImages = const [
+    'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
+    'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+    'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+    'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+  ];
+
+  void _goPrev() {
+    final last = _heroImages.length - 1;
+    final target = _currentPage == 0 ? last : _currentPage - 1;
+    _pageController.animateToPage(
+      target,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _goNext() {
+    final last = _heroImages.length - 1;
+    final target = _currentPage == last ? 0 : _currentPage + 1;
+    _pageController.animateToPage(
+      target,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,28 +77,33 @@ class HomeScreen extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                // Hero Section
+                // Hero Section (carousel with arrow bar)
                 SizedBox(
                   height: 400,
                   width: double.infinity,
                   child: Stack(
                     children: [
-                      // Background image
+                      // Images
                       Positioned.fill(
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black.withValues(alpha: 0.7),
-                            ),
-                          ),
+                        child: PageView.builder(
+                          controller: _pageController,
+                          onPageChanged: (index) =>
+                              setState(() => _currentPage = index),
+                          itemCount: _heroImages.length,
+                          itemBuilder: (context, index) {
+                            return Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                Image.network(
+                                  _heroImages[index],
+                                  fit: BoxFit.cover,
+                                ),
+                                Container(
+                                  color: Colors.black.withOpacity(0.6),
+                                ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                       // Content overlay
@@ -89,9 +135,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                             const SizedBox(height: 32),
                             ElevatedButton(
-                              onPressed: () {
-                                // Placeholder for button action
-                              },
+                              onPressed: () {},
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF4d2963),
                                 foregroundColor: Colors.white,
@@ -101,11 +145,79 @@ class HomeScreen extends StatelessWidget {
                               ),
                               child: const Text(
                                 'BROWSE COLLECTION',
-                                style:
-                                    TextStyle(fontSize: 14, letterSpacing: 1),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  letterSpacing: 1,
+                                ),
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      // Arrow + dots bar
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 16,
+                        child: Center(
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.6),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                IconButton(
+                                  tooltip: 'Previous',
+                                  onPressed: _goPrev,
+                                  icon: const Icon(Icons.chevron_left),
+                                  color: Colors.white,
+                                  splashRadius: 20,
+                                ),
+                                const SizedBox(width: 4),
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: List.generate(
+                                    _heroImages.length,
+                                    (i) => GestureDetector(
+                                      onTap: () =>
+                                          _pageController.animateToPage(
+                                        i,
+                                        duration:
+                                            const Duration(milliseconds: 250),
+                                        curve: Curves.easeOut,
+                                      ),
+                                      child: AnimatedContainer(
+                                        duration:
+                                            const Duration(milliseconds: 200),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 4),
+                                        width: 8,
+                                        height: 8,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: i == _currentPage
+                                              ? Colors.white
+                                              : Colors.white.withOpacity(0.5),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 4),
+                                IconButton(
+                                  tooltip: 'Next',
+                                  onPressed: _goNext,
+                                  icon: const Icon(Icons.chevron_right),
+                                  color: Colors.white,
+                                  splashRadius: 20,
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],

@@ -155,9 +155,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     if (hasOptions) {
       // Colour defaults
       if (selectedColor == null) {
-        if (productId == '5')
+        if (productId == '5') {
           selectedColor = 'Sage';
-        else if (productId == '6')
+        } else if (productId == '6')
           selectedColor = 'Sand';
         else if (productId == '7')
           selectedColor = 'Baby Pink';
@@ -272,7 +272,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               children: [
                                 if (oldPrice != null) ...[
                                   Text(
-                                    oldPrice!,
+                                    oldPrice,
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: Colors.grey,
@@ -283,11 +283,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 ],
                                 Text(
                                   productData['price'] as String,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
                                     color:
-                                        const Color.fromARGB(255, 77, 123, 168),
+                                        Color.fromARGB(255, 77, 123, 168),
                                   ),
                                 ),
                               ],
@@ -311,7 +311,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                 fontWeight: FontWeight.w600)),
                                         const SizedBox(height: 8),
                                         DropdownButtonFormField<String>(
-                                          value: selectedColor,
+                                          initialValue: selectedColor,
                                           items: (productData['colors'] as List)
                                               .cast<String>()
                                               .map((c) => DropdownMenuItem(
@@ -337,9 +337,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                 // Essential Zip Hoodie
                                                 // Baby Pink -> index 2, Stone Blue -> index 3
                                                 if (selectedColor ==
-                                                    'Baby Pink')
+                                                    'Baby Pink') {
                                                   selectedImageIndex = 0;
-                                                else if (selectedColor ==
+                                                } else if (selectedColor ==
                                                     'Stone Blue')
                                                   selectedImageIndex = 1;
                                                 else
@@ -380,7 +380,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                 fontWeight: FontWeight.w600)),
                                         const SizedBox(height: 8),
                                         DropdownButtonFormField<String>(
-                                          value: selectedSize,
+                                          initialValue: selectedSize,
                                           items: (productData['sizes'] as List)
                                               .cast<String>()
                                               .map((s) => DropdownMenuItem(

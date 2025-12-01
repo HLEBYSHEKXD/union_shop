@@ -42,8 +42,7 @@ class AppHeader extends StatelessWidget {
                     const SizedBox(width: 8),
                     TextButton(onPressed: _noop, child: const Text('Shop')),
                     const SizedBox(width: 8),
-                    TextButton(
-                        onPressed: _noop, child: const Text('The Print Shack')),
+                    TextButton(onPressed: _noop, child: const Text('The Print Shack')),
                     const SizedBox(width: 8),
                     TextButton(onPressed: _noop, child: const Text('SALE!')),
                     const SizedBox(width: 8),
