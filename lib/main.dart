@@ -435,9 +435,94 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
+                // VIEW ALL button
+                const SizedBox(height: 24),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // TODO: navigate to a catalog route or perform an action
+                      Navigator.pushNamed(context, '/product-detail');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF4d2963),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.zero,
+                      ),
+                    ),
+                    child: const Text(
+                      'VIEW ALL',
+                      style: TextStyle(
+                        fontSize: 14,
+                        letterSpacing: 1,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+
+                // OUR RANGE title
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    'OUR RANGE',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 18,
+                      letterSpacing: 2,
+                      color: Colors.black.withOpacity(0.7),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+
+                // Category tiles grid
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      // 2 columns on narrow, 4 on wide
+                      final crossAxisCount = constraints.maxWidth < 700 ? 2 : 4;
+                      return GridView.count(
+                        crossAxisCount: crossAxisCount,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 16,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        children: const [
+                          _CategoryTile(
+                            label: 'Clothing',
+                            imageUrl:
+                                'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                          ),
+                          _CategoryTile(
+                            label: 'Merchandise',
+                            imageUrl:
+                                'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                          ),
+                          _CategoryTile(
+                            label: 'Graduation',
+                            imageUrl:
+                                'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                          ),
+                          _CategoryTile(
+                            label: 'SALE',
+                            imageUrl:
+                                'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(height: 40),
+
                 // Footer
                 const AppFooter(),
-                const SizedBox(height: 16),
               ],
             ),
           ),
@@ -514,6 +599,52 @@ class ProductCard extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Simple reusable category tile
+class _CategoryTile extends StatelessWidget {
+  final String label;
+  final String imageUrl;
+  const _CategoryTile({required this.label, required this.imageUrl});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // TODO: route per category
+        Navigator.pushNamed(context, '/product-detail');
+      },
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(imageUrl, fit: BoxFit.cover),
+            ),
+          ),
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.black.withOpacity(0.35),
+              ),
+            ),
+          ),
+          Center(
+            child: Text(
+              label,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
