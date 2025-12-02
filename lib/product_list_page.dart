@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart'; // to reuse ProductCard (or move ProductCard to its own file)
-import 'package:union_shop/header.dart'; // ADDED
-import 'package:union_shop/footer.dart'; // ADDED
+import 'package:union_shop/header.dart';
+import 'package:union_shop/footer.dart';
 
 // Simple product data model
 class Product {
@@ -160,7 +160,7 @@ class ProductListPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 48),
-                const AppFooter(), // FOOTER inside scroll
+                const AppFooter(),
               ],
             ),
           ),

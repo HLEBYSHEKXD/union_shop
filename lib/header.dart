@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
 
-  void _noop() {}
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,30 +36,37 @@ class AppHeader extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    TextButton(onPressed: _noop, child: const Text('Home')),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/', (route) => false);
+                      },
+                      child: const Text('Home'),
+                    ),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: _noop, child: const Text('Shop')),
+                    TextButton(onPressed: () {}, child: const Text('Shop')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: _noop, child: const Text('The Print Shack')),
+                    TextButton(
+                        onPressed: () {}, child: const Text('The Print Shack')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: _noop, child: const Text('SALE!')),
+                    TextButton(onPressed: () {}, child: const Text('SALE!')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: _noop, child: const Text('About')),
+                    TextButton(onPressed: () {}, child: const Text('About')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: _noop, child: const Text('UPSU.net')),
+                    TextButton(onPressed: () {}, child: const Text('UPSU.net')),
                   ],
                 ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  IconButton(onPressed: _noop, icon: const Icon(Icons.search)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
                   IconButton(
-                      onPressed: _noop, icon: const Icon(Icons.person_outline)),
+                      onPressed: () {}, icon: const Icon(Icons.person_outline)),
                   IconButton(
-                      onPressed: _noop,
+                      onPressed: () {},
                       icon: const Icon(Icons.shopping_bag_outlined)),
-                  IconButton(onPressed: _noop, icon: const Icon(Icons.menu)),
+                  IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
                 ],
               ),
             ],
