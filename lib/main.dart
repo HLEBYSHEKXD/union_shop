@@ -37,14 +37,16 @@ class _Slide {
   final String imageUrl;
   final String title;
   final String subtitle;
-  final String buttonText; // NEW
-  final String? buttonRoute; // OPTIONAL: per‑slide navigation
+  final String buttonText;
+  final String? buttonRoute;
+  final Object? buttonArgs; // NEW: pass ProductListArgs to the route
   const _Slide({
     required this.imageUrl,
     required this.title,
     required this.subtitle,
-    required this.buttonText, // NEW
-    this.buttonRoute, // OPTIONAL
+    required this.buttonText,
+    this.buttonRoute,
+    this.buttonArgs, // NEW
   });
 }
 
@@ -54,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Timer? _autoPlayTimer;
 
   // Replace _heroImages with _slides
-  final List<_Slide> _slides = const [
+  final List<_Slide> _slides = [
     _Slide(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
@@ -62,7 +64,33 @@ class _HomeScreenState extends State<HomeScreen> {
       subtitle:
           'Over 20% off our essential range. Come and grab yours while stocks last!',
       buttonText: 'BROWSE COLLECTION',
-      buttonRoute: '/product-detail',
+      buttonRoute: '/products', // CHANGED: go to the universal list
+      buttonArgs: ProductListArgs(
+        // NEW: bind the list data
+        pageTitle: 'Essential Range',
+        heroImageUrl:
+            'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+        introText:
+            'Everyday wear, redefined. \n\nThe Essential Collection focuses on versatile must-haves designed for daily rotation. Clean lines, modern fits, and a fresh chest logo bring a contemporary edge to staple t-shirts. Easy to wear, easy to style - these are the essentials your wardrobe can’t do without.',
+        products: const [
+          Product(
+            id: '7',
+            title: 'Limited Edition Essential Zip Hoodies',
+            price: '£14.99',
+            oldPrice: '£20.00',
+            imageUrl:
+                'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+          ),
+          Product(
+            id: '8',
+            title: 'Essential T-Shirt',
+            price: '£6.99',
+            oldPrice: '£10.00',
+            imageUrl:
+                'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+          ),
+        ],
+      ),
     ),
     _Slide(
       imageUrl:
@@ -195,7 +223,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPressed: () {
                                 final s = _slides[_currentPage];
                                 if (s.buttonRoute != null) {
-                                  Navigator.pushNamed(context, s.buttonRoute!);
+                                  Navigator.pushNamed(context, s.buttonRoute!,
+                                      arguments:
+                                          s.buttonArgs); // CHANGED: pass args
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -205,8 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.zero),
                               ),
                               child: Text(
-                                _slides[_currentPage]
-                                    .buttonText, // CHANGED: per‑slide label
+                                _slides[_currentPage].buttonText,
                                 style: const TextStyle(letterSpacing: 1),
                               ),
                             ),
