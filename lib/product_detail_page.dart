@@ -45,7 +45,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         // Add images list; put your second image URL below
         'images': [
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-          'https://shop.upsu.net/cdn/shop/files/Portsmouth_City_Magnet_3_1024x1024@2x.jpg?v=1752230299', // TODO: paste your second image link here
+          'https://shop.upsu.net/cdn/shop/files/Portsmouth_City_Magnet_3_1024x1024@2x.jpg?v=1752230299',
         ],
         'description':
             'Bring a bit of Portsmouth pride to your fridge, locker, or pinboard with our eye-catching Portsmouth City Magnet, featuring the artwork of renowned illustrator Julia Gash.\n\nPart of our Portsmouth City Collection, this magnet showcases Julia’s iconic hand-drawn design, celebrating the city’s most loved landmarks and seaside charm in her signature playful style.\n\nMade from durable tin plate, it\'s both lightweight and long-lasting - a perfect souvenir or small gift with a big personality.',
@@ -347,6 +347,67 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Introducing our new Crested Badge! Complete with a presentation box, this badge is a must have!',
       },
+      '31': {
+        'name': 'A5 Notepad',
+        'price': 'Sold Out',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/IMG_0617_1024x1024@2x.jpg?v=1557218162',
+        'description': 'Get everything written down with this A5 Notepad',
+      },
+      '32': {
+        'name': 'Recycled Notebook',
+        'price': '£1.80',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/IMG_3406_1024x1024@2x.jpg?v=1581000944',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/products/IMG_3406_1024x1024@2x.jpg?v=1581000944',
+          'https://shop.upsu.net/cdn/shop/products/IMG_3403_1024x1024@2x.jpg?v=1581000979',
+        ],
+        'description': 'Add this notebook to your study essentials!',
+      },
+      '33': {
+        'name': 'iPhone 5/6 Charge & Sync Cable',
+        'price': '£1.50',
+        'oldPrice': '£3.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/IMG_0731_1024x1024@2x.jpg?v=1557218844',
+        'description': ' Iphone 5/6 Charge & Sync Cable',
+      },
+      '34': {
+        'name': 'Type C Charge & Sync Cable',
+        'price': '£1.50',
+        'oldPrice': '£3.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/IMG_0731_a5c36e1e-fd85-45cc-95d5-e5e17376ec31_1024x1024@2x.jpg?v=1561456690',
+        'description': ' Type C charge & sync cable ',
+      },
+      '35': {
+        'name': 'USB to USB Charge & Sync Cables',
+        'price': '£1.50',
+        'oldPrice': '£3.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/IMG_0731_8f8e699f-6ffb-4b72-9aba-eafc2865bb20_1024x1024@2x.jpg?v=1557220956',
+        'description':
+            'USB to USB Charge & Sync Cables \n\nPerfect for transferring data from one device to another ',
+      },
+      '36': {
+        'name': 'Dimple Pop Fidget Keyring',
+        'price': '£0.99',
+        'oldPrice': '£1.50',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Fidget_Keyring_1024x1024@2x.png?v=1719226889',
+        'description':
+            'Dimple Pop Fidget Keyring is designed for those who can\'t get away from the popping sensation! This keyring has a ball chain that allows you to clip it to you keys to take everywhere you go!\n\nPLEASE NOTE: Colour may vary ',
+      },
+      '37': {
+        'name': 'Nike Academy 18 Tech Pants (W)',
+        'price': '£7.00',
+        'oldPrice': '£24.99',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Nike_Pants_Shopify_-_Sept_24_1024x1024@2x.png?v=1726483797',
+        'description':
+            'UoP logo not included please purchase personalisation at check out if you would like the UoP logo on your item',
+      },
     };
   }
 
@@ -551,8 +612,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                   selectedImageIndex = 0;
                                                 } else if (selectedColor ==
                                                     'Stone Blue')
+                                                  // ignore: curly_braces_in_flow_control_structures
                                                   selectedImageIndex = 1;
                                                 else
+                                                  // ignore: curly_braces_in_flow_control_structures
                                                   selectedImageIndex = 0;
                                               } else if (productId == '8') {
                                                 // Essential T-Shirt

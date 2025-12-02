@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/product_list_page.dart'; // use Product & ProductListArgs from here
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -49,7 +50,86 @@ class AppHeader extends StatelessWidget {
                     TextButton(
                         onPressed: () {}, child: const Text('The Print Shack')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: () {}, child: const Text('SALE!')),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(
+                          context,
+                          '/products',
+                          arguments: const ProductListArgs(
+                            pageTitle: 'SALE',
+                            heroImageUrl:
+                                'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                            introText:
+                                'Don’t miss out! Get yours before they’re all gone!\n\nAll prices shown are inclusive of the discount 🛒',
+                            products: [
+                              Product(
+                                id: '31',
+                                title: 'A5 Notepad',
+                                price: 'Sold out',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/IMG_0617_1024x1024@2x.jpg?v=1557218162',
+                              ),
+                              Product(
+                                id: '15',
+                                title: 'Classic Sweatshirts – Neutral',
+                                price: '£10.99',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/files/Neutral_-_Sept_24_1024x1024@2x.png?v=1750063651',
+                                oldPrice: '£17.00',
+                              ),
+                              Product(
+                                id: '32',
+                                title: 'Recycled Notebook',
+                                price: '£1.80',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/IMG_3406_1024x1024@2x.jpg?v=1581000944',
+                              ),
+                              Product(
+                                id: '33',
+                                title: 'iPhone 5/6 Charge & Sync Cable',
+                                price: '£1.50',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/IMG_0731_1024x1024@2x.jpg?v=1557218844',
+                                oldPrice: '£3.00',
+                              ),
+                              Product(
+                                id: '34',
+                                title: 'Type C Charge & Sync Cable',
+                                price: '£1.50',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/IMG_0731_a5c36e1e-fd85-45cc-95d5-e5e17376ec31_1024x1024@2x.jpg?v=1561456690',
+                                oldPrice: '£3.00',
+                              ),
+                              Product(
+                                id: '35',
+                                title: 'USB to USB Charge & Sync Cables',
+                                price: '£1.50',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/IMG_0731_8f8e699f-6ffb-4b72-9aba-eafc2865bb20_540x.jpg?v=1557220956',
+                                oldPrice: '£3.00',
+                              ),
+                              Product(
+                                id: '36',
+                                title: 'Dimple Pop Fidget Keyring',
+                                price: '£0.99',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/files/Fidget_Keyring_1024x1024@2x.png?v=1719226889',
+                                oldPrice: '£1.50',
+                              ),
+                              Product(
+                                id: '37',
+                                title: 'Nike Academy 18 Tech Pants (W)',
+                                price: '£7.00',
+                                imageUrl:
+                                    'https://shop.upsu.net/cdn/shop/files/Nike_Pants_Shopify_-_Sept_24_1024x1024@2x.png?v=1726483797',
+                                oldPrice: '£24.99',
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      child: const Text('SALE!'),
+                    ),
                     const SizedBox(width: 8),
                     TextButton(
                       onPressed: () {
