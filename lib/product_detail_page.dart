@@ -497,7 +497,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   style: const TextStyle(
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600,
-                                    color: Color.fromARGB(255, 77, 123, 168),
+                                    color: Color.fromARGB(255, 114, 120, 126),
                                   ),
                                 ),
                               ],
@@ -685,7 +685,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             Text(productData['description'] as String,
                                 style: const TextStyle(
                                     fontSize: 16,
-                                    color: Colors.grey,
+                                    color: Color.fromARGB(255, 131, 131, 131),
                                     height: 1.6)),
                             const SizedBox(height: 24),
                             Row(
