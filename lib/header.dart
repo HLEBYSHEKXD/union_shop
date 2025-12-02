@@ -51,7 +51,12 @@ class AppHeader extends StatelessWidget {
                     const SizedBox(width: 8),
                     TextButton(onPressed: () {}, child: const Text('SALE!')),
                     const SizedBox(width: 8),
-                    TextButton(onPressed: () {}, child: const Text('About')),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/about');
+                      },
+                      child: const Text('About'),
+                    ),
                     const SizedBox(width: 8),
                     TextButton(onPressed: () {}, child: const Text('UPSU.net')),
                   ],
