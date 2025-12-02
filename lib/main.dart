@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Replace _heroImages with _slides
   final List<_Slide> _slides = [
-    _Slide(
+    const _Slide(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
       title: 'Essential Range - Over 20% Off!',
@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
             'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
         introText:
             'Everyday wear, redefined. \n\nThe Essential Collection focuses on versatile must-haves designed for daily rotation. Clean lines, modern fits, and a fresh chest logo bring a contemporary edge to staple t-shirts. Easy to wear, easy to style - these are the essentials your wardrobe can’t do without.',
-        products: const [
+        products: [
           Product(
             id: '7',
             title: 'Limited Edition Essential Zip Hoodies',
@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     ),
-    _Slide(
+    const _Slide(
       imageUrl:
           'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
       title: 'The Print Shack',
@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
       buttonRoute: '/product-detail',
       buttonArgs: '26', // NEW: open the personalisation product
     ),
-    _Slide(
+    const _Slide(
       imageUrl:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS76eQqot6FBCBRzVxbKp1EQ4YekVoFDwbhww&s',
       title: 'Hungry?',
@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
       buttonText: 'ORDER DOMINO\'S PIZZA NOW',
       buttonRoute: '/product-detail',
     ),
-    _Slide(
+    const _Slide(
       imageUrl: 'assets/images/harry_law_bedroom_600x400.png',
       title: 'What\'s your next move...',
       subtitle: 'Are you with us?',
@@ -477,13 +477,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pushNamed(
                         context,
                         '/products',
-                        arguments: ProductListArgs(
+                        arguments: const ProductListArgs(
                           pageTitle: 'Portsmouth City Collection',
                           heroImageUrl:
                               'https://shop.upsu.net/cdn/shop/files/PortsmouthCityPostcard2_1024x1024@2x.jpg?v=1752232561',
                           introText:
                               'We\'re excited to launch the Portsmouth City Collection, featuring products by renowned British illustrator Julia Gash, now available in our Students’ Union Shop!\n\nThis unique collection celebrates our vibrant city through Julia’s iconic hand-drawn style - full of charm, character, and local landmarks that students and visitors alike will instantly recognise. From the Spinnaker Tower to The King\'s Theatre, each design captures the spirit of Portsmouth in bold lines and colourful detail.\n\nAvailable in postcards, magnets, bookmarks and water bottles, these items make perfect mementos, gifts, or affordable keepsakes - whether you’re a new student, proud local, or just passing through.',
-                          products: const [
+                          products: [
                             Product(
                               id: '1',
                               title: 'Portsmouth City Postcard',
@@ -567,6 +567,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2,
+                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.7),
                       fontWeight: FontWeight.w600,
                     ),
@@ -591,7 +592,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           const _CategoryTile(
                             label: 'Clothing',
                             imageUrl:
-                                'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                                'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal_1024x1024@2x.jpg?v=1742201957',
                           ),
                           _CategoryTile(
                             label: 'Merchandise',
@@ -605,10 +606,77 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                           ),
-                          const _CategoryTile(
+                          _CategoryTile(
                             label: 'Graduation',
                             imageUrl:
-                                'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                                'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
+                            onTap: () {
+                              Navigator.pushNamed(
+                                context,
+                                '/products',
+                                arguments: const ProductListArgs(
+                                  pageTitle: 'Graduation',
+                                  heroImageUrl:
+                                      'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
+                                  introText:
+                                      'Celebrate your achievement with our official graduation collection.',
+                                  products: [
+                                    Product(
+                                      id: '16',
+                                      title: 'Graduation Hoodies',
+                                      price: '£35.00',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
+                                    ),
+                                    Product(
+                                      id: '17',
+                                      title: 'Graduation 3/4 Zipped Sweatshirt',
+                                      price: '£45.00',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/files/Graduation3_4ZipSweatshirt_1024x1024@2x.jpg?v=1685631207',
+                                    ),
+                                    Product(
+                                      id: '23',
+                                      title: 'Waterproof Poncho',
+                                      price: '£1.99',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/files/WaterproofPoncho_1024x1024@2x.jpg?v=1750835308',
+                                    ),
+                                    Product(
+                                      id: '27',
+                                      title: 'Graduation bears',
+                                      price: 'Sold Out',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/files/Bear_1_-_right_size_1024x1024@2x.jpg?v=1750064318',
+                                    ),
+                                    Product(
+                                      id: '28',
+                                      title: 'Crested Tie',
+                                      price: '£10.99',
+                                      oldPrice: '£15.00',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/products/Tie_1024x1024@2x.jpg?v=1657031719',
+                                    ),
+                                    Product(
+                                      id: '29',
+                                      title: 'Crested Notebook',
+                                      price: '£7.99',
+                                      oldPrice: '£10.50',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/files/CrestedNotebookSmall_1024x1024@2x.jpg?v=1687528150',
+                                    ),
+                                    Product(
+                                      id: '30',
+                                      title: 'Crested Badge',
+                                      price: '£4.99',
+                                      oldPrice: '£7.00',
+                                      imageUrl:
+                                          'https://shop.upsu.net/cdn/shop/files/CrestedBadgeSmall_1024x1024@2x.png?v=1687527619',
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
                           ),
                           const _CategoryTile(
                             label: 'SALE',

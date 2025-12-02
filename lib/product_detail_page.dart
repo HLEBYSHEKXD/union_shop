@@ -308,6 +308,45 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             '£3 for one line of text! £5 for two! \n\nOne line of text is 10 characters. \n\nPlease ensure all spellings are correct before submitting your purchase as we will print your item with the exact wording you provide. We will not be responsible for any incorrect spellings printed onto your garment. Personalised items do not qualify for refunds.',
       },
+      '27': {
+        'name': 'Graduation bears',
+        'price': 'Sold Out',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Bear_1_-_right_size_1024x1024@2x.jpg?v=1750064318',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/files/Bear_1_-_right_size_1024x1024@2x.jpg?v=1750064318',
+          'https://shop.upsu.net/cdn/shop/files/Graduation_Bear_Shopify_Size_1024x1024@2x.png?v=1750064318',
+          'https://shop.upsu.net/cdn/shop/files/benny_bear_1024x1024@2x.jpg?v=1750064318',
+        ],
+        'description':
+            'RETURNING for Graduation 2025 Benny the Bear, named by your very own Academic Representation officer Marija, is now available for a limited time only! So be sure to get yours! ❤️️',
+      },
+      '28': {
+        'name': 'Crested Tie',
+        'price': '£10.99',
+        'oldPrice': '£15.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/Tie_1024x1024@2x.jpg?v=1657031719',
+        'description':
+            'Treat yourself to one of our UoP Crested Ties. Embroidered with the University of Portsmouth crest, our top of the range graduation tie is ideal as a graduation gift or keep sake!',
+      },
+      '29': {
+        'name': 'Crested Notebook',
+        'price': '£7.99',
+        'oldPrice': '£10.50',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/CrestedNotebookSmall_1024x1024@2x.jpg?v=1687528150',
+        'description': 'Introducing our new Crested Notebook!',
+      },
+      '30': {
+        'name': 'Crested Badge',
+        'price': '£4.99',
+        'oldPrice': '£7.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/CrestedBadgeSmall_1024x1024@2x.png?v=1687527619',
+        'description':
+            'Introducing our new Crested Badge! Complete with a presentation box, this badge is a must have!',
+      },
     };
   }
 
