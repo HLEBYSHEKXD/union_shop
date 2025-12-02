@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/product_list_page.dart'; // use Product & ProductListArgs from here
+import 'package:union_shop/product_list_page.dart';
+import 'package:union_shop/print_shack_about_page.dart';
 
 class AppHeader extends StatelessWidget {
   const AppHeader({super.key});
@@ -47,8 +48,68 @@ class AppHeader extends StatelessWidget {
                     const SizedBox(width: 8),
                     TextButton(onPressed: () {}, child: const Text('Shop')),
                     const SizedBox(width: 8),
-                    TextButton(
-                        onPressed: () {}, child: const Text('The Print Shack')),
+
+                    // The Print Shack popup menu
+                    PopupMenuButton<String>(
+                      tooltip: 'The Print Shack',
+                      offset: const Offset(0, 24),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 6.0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              'The Print Shack',
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline),
+                            ),
+                            SizedBox(width: 4),
+                            Icon(Icons.keyboard_arrow_down, size: 18),
+                          ],
+                        ),
+                      ),
+                      onSelected: (value) {
+                        switch (value) {
+                          case 'about':
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const PrintShackAboutPage()),
+                            );
+                            break;
+                          case 'personalisation':
+                            Navigator.pushNamed(
+                              context,
+                              '/products',
+                              arguments: const ProductListArgs(
+                                pageTitle: 'Personalisation',
+                                heroImageUrl:
+                                    'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                                introText:
+                                    'Create custom merchandise with our personalisation service.',
+                                products: [
+                                  Product(
+                                    id: '26',
+                                    title: 'Personalised Item',
+                                    price: '£15.00',
+                                    imageUrl:
+                                        'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+                                  ),
+                                ],
+                              ),
+                            );
+                            break;
+                        }
+                      },
+                      itemBuilder: (context) => const [
+                        PopupMenuItem(value: 'about', child: Text('About')),
+                        PopupMenuItem(
+                            value: 'personalisation',
+                            child: Text('Personalisation')),
+                      ],
+                    ),
+
                     const SizedBox(width: 8),
                     TextButton(
                       onPressed: () {
