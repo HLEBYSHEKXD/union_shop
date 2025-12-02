@@ -172,95 +172,129 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'image':
             'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
         'description': 'Classic hoodie with University of Portsmouth branding.',
+        'colors': ['Purple', 'Green', 'Black'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      // WARNING: id 13 is duplicated in main.dart; only one will be shown.
       '13': {
+        'name': 'Classic Sweatshirts',
+        'price': '£23.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/GreenSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+        'description': 'Classic cotton T‑shirt with collegiate print.',
+        'colors': ['Green', 'Grey', 'Black'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
+      },
+      '14': {
         'name': 'Classic T-Shirts',
         'price': '£11.00',
         'image':
             'https://shop.upsu.net/cdn/shop/products/BlackTshirtFinal_1024x1024@2x.png?v=1669713197',
         'description': 'Classic cotton T‑shirt with collegiate print.',
+        'colors': ['Black', 'White', 'Navy'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '14': {
+      '15': {
         'name': 'Classic Sweatshirts - Neutral',
         'price': '£10.99',
         'oldPrice': '£17.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/Neutral_-_Sept_24_1024x1024@2x.png?v=1750063651',
         'description': 'Neutral-toned sweatshirts from the Classic range.',
+        'colors': ['Neutral', 'Sand', 'Ivory'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '15': {
+      '16': {
         'name': 'Graduation Hoodies',
         'price': '£35.00',
         'image':
             'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
         'description': 'Official Graduation hoodie.',
+        'colors': ['Grey', 'Navy', 'Black'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '16': {
+      '17': {
         'name': 'Graduation 3/4 Zipped Sweatshirt',
         'price': '£45.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/Graduation3_4ZipSweatshirt_1024x1024@2x.jpg?v=1685631207',
         'description': 'Graduation sweatshirt with 3/4 zip.',
+        'colors': ['Grey', 'Black'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '17': {
+      '18': {
         'name': 'Classic Cap',
         'price': '£12.00',
         'image':
             'https://shop.upsu.net/cdn/shop/products/Caps-All_1024x1024@2x.jpg?v=1742201981',
         'description': 'Classic cap available in multiple colours.',
+        'colors': ['Purple', 'Black', 'Grey'],
+        'sizes': ['One Size'],
       },
-      '18': {
+      '19': {
         'name': 'Classic Beanie Hat',
         'price': '£12.00',
         'image':
             'https://shop.upsu.net/cdn/shop/products/Beanies-All_1024x1024@2x.jpg?v=1742201998',
         'description': 'Warm beanie hat with university logo.',
+        'colors': ['Black', 'Grey', 'Purple'],
+        'sizes': ['One Size'],
       },
-      '19': {
+      '20': {
         'name': 'Classic Hoodies',
         'price': '£25.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/RainbowHoodie_1024x1024@2x.png?v=1687876281',
         'description': 'Classic hoodie featuring rainbow print.',
+        'colors': ['Black', 'Navy'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '20': {
+      '21': {
         'name': 'Heavyweight Shorts',
         'price': '£12.99',
         'oldPrice': '£20.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/HeavyWeightShortspng_1024x1024@2x.png?v=1683815389',
         'description': 'Heavyweight shorts for everyday wear.',
+        'colors': ['Black', 'Grey'],
+        'sizes': ['S', 'M', 'L', 'XL'],
       },
-      '21': {
+      '22': {
         'name': 'Ladies Athletic Leggings',
         'price': '£12.99',
         'oldPrice': '£26.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/Ladies_Leggings_5da2d44f-108e-4664-8c14-bc8bdddf1ea4_1024x1024@2x.jpg?v=1749130749',
         'description': 'Athletic leggings with a comfortable fit.',
+        'colors': ['Black', 'Charcoal'],
+        'sizes': ['XS', 'S', 'M', 'L', 'XL'],
       },
-      '22': {
+      '23': {
         'name': 'Waterproof Poncho',
         'price': '£1.99',
         'image':
             'https://shop.upsu.net/cdn/shop/files/WaterproofPoncho_540x.jpg?v=1750835308',
         'description': 'Compact waterproof poncho.',
+        'colors': ['Clear', 'Blue'],
+        'sizes': ['One Size'],
       },
-      '23': {
+      '24': {
         'name': 'Classic Hoodies - Burgundy',
         'price': '£12.00',
         'oldPrice': '£25.00',
         'image':
             'https://shop.upsu.net/cdn/shop/files/BurgundyHoodieFinal_430x_12f854ab-f6b5-4e7c-892a-89b92bae04c7_1024x1024@2x.webp?v=1752225891',
         'description': 'Classic hoodie in Burgundy colourway.',
+        'colors': ['Burgundy', 'Black'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
       },
-      '24': {
+      '25': {
         'name': 'Limited Edition UoP Beanies',
         'price': '£7.50',
         'image':
             'https://shop.upsu.net/cdn/shop/files/LE_UoP_Beanie_Pic_2_1024x1024@2x.jpg?v=1758288546',
         'description': 'Limited edition University of Portsmouth beanies.',
+        'colors': ['Purple', 'Black'],
+        'sizes': ['One Size'],
       },
     };
   }
@@ -271,30 +305,26 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     final productId =
         args is String ? args : (args is int ? args.toString() : '1');
     final productData = getProductData()[productId] ?? getProductData()['1']!;
-    final isSignature = productId == '5' || productId == '6';
-    final isEssential = productId == '7' || productId == '8'; // NEW
-    final hasOptions = isSignature || isEssential; // NEW
+    // REPLACED: derive options from productData instead of hardcoding ids
+    final hasOptions =
+        productData.containsKey('colors') && productData.containsKey('sizes');
 
     // Build the images list once per build
     final List<String> images = (productData['images'] is List &&
             (productData['images'] as List).isNotEmpty)
-        ? (productData['images'] as List).cast<String>() // ensure List<String>
+        ? (productData['images'] as List).cast<String>()
         : [productData['image'] as String];
 
-    // Defaults for options (Signature + Essential)
+    // Defaults for options: first color/size when available
     if (hasOptions) {
-      // Colour defaults
-      if (selectedColor == null) {
-        if (productId == '5') {
-          selectedColor = 'Sage';
-        } else if (productId == '6')
-          selectedColor = 'Sand';
-        else if (productId == '7')
-          selectedColor = 'Baby Pink';
-        else if (productId == '8') selectedColor = 'Sage';
-      }
-      // Size default (per screenshot, L)
-      selectedSize ??= 'L';
+      final colors = (productData['colors'] as List).cast<String>();
+      final sizes = (productData['sizes'] as List).cast<String>();
+      selectedColor ??= colors.isNotEmpty ? colors.first : null;
+      selectedSize ??= sizes.isNotEmpty ? sizes.first : null;
+
+      // Optional: simple image selection mapping when there are multiple images
+      // If you want color to change image and you have a per-color images list,
+      // add a mapping here. For now we keep current image unless user taps a thumbnail.
     }
 
     final String? oldPrice = productData['oldPrice'] as String?;
@@ -388,7 +418,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
                       const SizedBox(width: 60),
 
-                      // RIGHT: colour dropdown must also set selectedImageIndex
+                      // RIGHT: options UI uses productData colors/sizes dynamically
                       Expanded(
                         flex: 1,
                         child: Column(
