@@ -166,6 +166,102 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Stay hydrated in style with this eye-catching 850ml Portsmouth City Water Bottle, featuring artwork by celebrated British illustrator Julia Gash. \n\nAdorned with her distinctive hand-drawn design, the bottle showcases Portsmouth’s most beloved landmarks - from the iconic Spinnaker Tower to historic seafront scenes - all captured in bold lines and vibrant colours. \n\nMade from durable, eco-friendly materials, it’s perfect for campus life, day trips, or simply showing off your love for our coastal city. A practical and charming 850ml keepsake that brings a splash of Portsmouth wherever you go.',
       },
+      '12': {
+        'name': 'Classic Hoodies',
+        'price': '£25.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
+        'description': 'Classic hoodie with University of Portsmouth branding.',
+      },
+      // WARNING: id 13 is duplicated in main.dart; only one will be shown.
+      '13': {
+        'name': 'Classic T-Shirts',
+        'price': '£11.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/BlackTshirtFinal_1024x1024@2x.png?v=1669713197',
+        'description': 'Classic cotton T‑shirt with collegiate print.',
+      },
+      '14': {
+        'name': 'Classic Sweatshirts - Neutral',
+        'price': '£10.99',
+        'oldPrice': '£17.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Neutral_-_Sept_24_1024x1024@2x.png?v=1750063651',
+        'description': 'Neutral-toned sweatshirts from the Classic range.',
+      },
+      '15': {
+        'name': 'Graduation Hoodies',
+        'price': '£35.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
+        'description': 'Official Graduation hoodie.',
+      },
+      '16': {
+        'name': 'Graduation 3/4 Zipped Sweatshirt',
+        'price': '£45.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Graduation3_4ZipSweatshirt_1024x1024@2x.jpg?v=1685631207',
+        'description': 'Graduation sweatshirt with 3/4 zip.',
+      },
+      '17': {
+        'name': 'Classic Cap',
+        'price': '£12.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/Caps-All_1024x1024@2x.jpg?v=1742201981',
+        'description': 'Classic cap available in multiple colours.',
+      },
+      '18': {
+        'name': 'Classic Beanie Hat',
+        'price': '£12.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/Beanies-All_1024x1024@2x.jpg?v=1742201998',
+        'description': 'Warm beanie hat with university logo.',
+      },
+      '19': {
+        'name': 'Classic Hoodies',
+        'price': '£25.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/RainbowHoodie_1024x1024@2x.png?v=1687876281',
+        'description': 'Classic hoodie featuring rainbow print.',
+      },
+      '20': {
+        'name': 'Heavyweight Shorts',
+        'price': '£12.99',
+        'oldPrice': '£20.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/HeavyWeightShortspng_1024x1024@2x.png?v=1683815389',
+        'description': 'Heavyweight shorts for everyday wear.',
+      },
+      '21': {
+        'name': 'Ladies Athletic Leggings',
+        'price': '£12.99',
+        'oldPrice': '£26.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/Ladies_Leggings_5da2d44f-108e-4664-8c14-bc8bdddf1ea4_1024x1024@2x.jpg?v=1749130749',
+        'description': 'Athletic leggings with a comfortable fit.',
+      },
+      '22': {
+        'name': 'Waterproof Poncho',
+        'price': '£1.99',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/WaterproofPoncho_540x.jpg?v=1750835308',
+        'description': 'Compact waterproof poncho.',
+      },
+      '23': {
+        'name': 'Classic Hoodies - Burgundy',
+        'price': '£12.00',
+        'oldPrice': '£25.00',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/BurgundyHoodieFinal_430x_12f854ab-f6b5-4e7c-892a-89b92bae04c7_1024x1024@2x.webp?v=1752225891',
+        'description': 'Classic hoodie in Burgundy colourway.',
+      },
+      '24': {
+        'name': 'Limited Edition UoP Beanies',
+        'price': '£7.50',
+        'image':
+            'https://shop.upsu.net/cdn/shop/files/LE_UoP_Beanie_Pic_2_1024x1024@2x.jpg?v=1758288546',
+        'description': 'Limited edition University of Portsmouth beanies.',
+      },
     };
   }
 
