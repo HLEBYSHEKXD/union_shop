@@ -100,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Let\'s create something uniquely you with our personalisation service — From £3 for one line of text!',
       buttonText: 'FIND OUT MORE',
       buttonRoute: '/product-detail',
+      buttonArgs: '26', // NEW: open the personalisation product
     ),
     _Slide(
       imageUrl:

@@ -296,6 +296,18 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'colors': ['Purple', 'Black'],
         'sizes': ['One Size'],
       },
+      '26': {
+        'name': 'Personalisation',
+        'price': '£3',
+        'image':
+            'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+        'images': [
+          'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
+          'https://shop.upsu.net/cdn/shop/files/CloseUp_1024x1024@2x.jpg?v=1614736784',
+        ],
+        'description':
+            '£3 for one line of text! £5 for two! \n\nOne line of text is 10 characters. \n\nPlease ensure all spellings are correct before submitting your purchase as we will print your item with the exact wording you provide. We will not be responsible for any incorrect spellings printed onto your garment. Personalised items do not qualify for refunds.',
+      },
     };
   }
 
