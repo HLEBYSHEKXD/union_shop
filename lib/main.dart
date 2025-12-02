@@ -20,8 +20,7 @@ class UnionShopApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeScreen(),
         '/product-detail': (context) => const ProductDetailPage(),
-        '/products': (context) =>
-            const ProductListPage(), // NEW universal list page
+        '/products': (context) => const ProductListPage(), // universal list
       },
     );
   }
@@ -677,8 +676,159 @@ class _CategoryTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // TODO: route per category
-        Navigator.pushNamed(context, '/product-detail');
+        if (label.toLowerCase() == 'clothing') {
+          Navigator.pushNamed(
+            context,
+            '/products',
+            arguments: ProductListArgs(
+              pageTitle: 'Clothing',
+              heroImageUrl: imageUrl,
+              introText: 'Classic hoodies, sweatshirts, tees and more.',
+              products: const [
+                Product(
+                  id: '12',
+                  title: 'Classic Hoodies',
+                  price: '£25.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/PurpleHoodieFinal.jpg?v=1742201957',
+                ),
+                Product(
+                  id: '13',
+                  title: 'Classic Sweatshirts',
+                  price: '£23.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/products/GreenSweatshirtFinal_1024x1024@2x.png?v=1741965433',
+                ),
+                Product(
+                  id: '13',
+                  title: 'Classic T-Shirts',
+                  price: '£11.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/products/BlackTshirtFinal_1024x1024@2x.png?v=1669713197',
+                ),
+                Product(
+                  id: '14',
+                  title: 'Classic Sweatshirts - Neutral',
+                  price: '£10.99',
+                  oldPrice: '£17.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Neutral_-_Sept_24_1024x1024@2x.png?v=1750063651',
+                ),
+                Product(
+                  id: '15',
+                  title: 'Graduation Hoodies',
+                  price: '£35.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/products/GradGrey_1024x1024@2x.jpg?v=1657288025',
+                ),
+                Product(
+                  id: '16',
+                  title: 'Graduation 3/4 Zipped Sweatshirt',
+                  price: '£45.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Graduation3_4ZipSweatshirt_1024x1024@2x.jpg?v=1685631207',
+                ),
+                Product(
+                  id: '17',
+                  title: 'Classic Cap',
+                  price: '£12.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/products/Caps-All_1024x1024@2x.jpg?v=1742201981',
+                ),
+                Product(
+                  id: '18',
+                  title: 'Classic Beanie Hat',
+                  price: '£12.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/products/Beanies-All_1024x1024@2x.jpg?v=1742201998',
+                ),
+                Product(
+                  id: '19',
+                  title: 'Classic Hoodies',
+                  price: '£25.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/RainbowHoodie_1024x1024@2x.png?v=1687876281',
+                ),
+                Product(
+                  id: '20',
+                  title: 'Heavyweight Shorts',
+                  price: '£12.99',
+                  oldPrice: '£20.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/HeavyWeightShortspng_1024x1024@2x.png?v=1683815389',
+                ),
+                Product(
+                  id: '21',
+                  title: 'Ladies Athletic Leggings',
+                  price: '£12.99',
+                  oldPrice: '£26.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Ladies_Leggings_5da2d44f-108e-4664-8c14-bc8bdddf1ea4_1024x1024@2x.jpg?v=1749130749',
+                ),
+                Product(
+                  id: '5',
+                  title: 'Signature Hoodie',
+                  price: '£32.99',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
+                ),
+                Product(
+                  id: '8',
+                  title: 'Essential T-Shirt',
+                  price: '£6.99',
+                  oldPrice: '£10.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+                ),
+                Product(
+                  id: '7',
+                  title: 'Limited Edition Essential Zip Hoodies',
+                  price: '£14.99',
+                  oldPrice: '£20.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+                ),
+                Product(
+                  id: '22',
+                  title: 'Waterproof Poncho',
+                  price: '£1.99',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/WaterproofPoncho_540x.jpg?v=1750835308',
+                ),
+                Product(
+                  id: '23',
+                  title: 'Classic Hoodies - Burgundy',
+                  price: '£12.00',
+                  oldPrice: '£25.00',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/BurgundyHoodieFinal_430x_12f854ab-f6b5-4e7c-892a-89b92bae04c7_1024x1024@2x.webp?v=1752225891',
+                ),
+                Product(
+                  id: '6',
+                  title: 'Signature T-Shirt',
+                  price: '£14.99',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/Signature_T-Shirt_Indigo_Blue_2_1024x1024@2x.jpg?v=1758290534',
+                ),
+                Product(
+                  id: '24',
+                  title: 'Limited Edition UoP Beanies',
+                  price: '£7.50',
+                  imageUrl:
+                      'https://shop.upsu.net/cdn/shop/files/LE_UoP_Beanie_Pic_2_1024x1024@2x.jpg?v=1758288546',
+                ),
+              ],
+            ),
+          );
+        } else {
+          // Default navigation for other tiles
+          Navigator.pushNamed(context, '/products',
+              arguments: ProductListArgs(
+                pageTitle: label,
+                heroImageUrl: imageUrl,
+                products: const [],
+              ));
+        }
       },
       child: Stack(
         children: [
