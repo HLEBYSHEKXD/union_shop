@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
 
-// CHANGE: Make Stateful (needed for image/color/size selection)
 class ProductDetailPage extends StatefulWidget {
   const ProductDetailPage({super.key});
 
@@ -13,7 +12,7 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
   String? selectedColor;
   String? selectedSize;
-  int selectedImageIndex = 0; // keep state here, do NOT reset in build
+  int selectedImageIndex = 0;
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -25,7 +24,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
 
   void placeholderCallbackForButtons() {}
 
-  // CHANGE: Added images / colors / sizes for signature products (5,6)
   Map<String, Map<String, dynamic>> getProductData() {
     return {
       '1': {
@@ -36,13 +34,11 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Celebrate the charm of our coastal city with this beautifully illustrated Portsmouth City Postcard, designed by British artist Julia Gash.\n\nFeaturing her signature hand-drawn style, this postcard captures Portsmouth’s most iconic landmarks - from the Spinnaker Tower to the historic seafront - all brought to life in bold lines and vibrant colours.\n\nPerfect for sending home, pinning on your wall, or keeping as a personal keepsake, it’s a fun and affordable way to show off your Portsmouth pride.',
       },
-      // Portsmouth City Magnet — add a second image slot
       '2': {
         'name': 'Portsmouth City Magnet',
         'price': '£4.50',
         'image':
             'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
-        // Add images list; put your second image URL below
         'images': [
           'https://shop.upsu.net/cdn/shop/files/PortsmouthCityMagnet1_1024x1024@2x.jpg?v=1752230282',
           'https://shop.upsu.net/cdn/shop/files/Portsmouth_City_Magnet_3_1024x1024@2x.jpg?v=1752230299',
@@ -66,11 +62,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Jot down your thoughts, sketches, or seaside daydreams with our charming Portsmouth City Notebook, featuring the artwork of renowned illustrator Julia Gash.\n\nPart of our Portsmouth City Collection, this notebook showcases Julia’s iconic hand-drawn design, capturing the city\'s much-loved landmarks and coastal charm in her signature playful style.\n\nWith plain, high-quality pages and a sturdy cover, it\'s perfect for notes, doodles, or travel memories – a practical yet inspiring gift or souvenir with true Portsmouth personality.',
       },
-      // Signature Range Hoodie
       '5': {
         'name': 'Signature Hoodie',
         'price': '£32.99',
-        // main image now set to first images entry (no placeholder)
         'image':
             'https://shop.upsu.net/cdn/shop/files/SageHoodie_1024x1024@2x.png?v=1745583498',
         'images': [
@@ -83,7 +77,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Crafted for comfort, elevated with detail — our Signature hoodies feature premium embroidery that sets them apart from our classic range. With a clean design and an oversized fit, they bring a refined edge to a classic silhouette. Whether you\'re layering up or keeping it simple, this is your new go-to for effortless style.',
       },
-      // Signature Range T-Shirt
       '6': {
         'name': 'Signature T-Shirt',
         'price': '£14.99',
@@ -98,7 +91,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Clean. Classic. Elevated.\n\nOur Signature T-shirts combine everyday comfort with premium detail. Featuring high-quality embroidery and a relaxed fit, they offer a fresh take on a staple piece. Lightweight and versatile, this tee is perfect for layering or wearing solo - an essential addition to any wardrobe.',
       },
-      // 7) Limited Edition Essential Zip Hoodies — 4 images
       '7': {
         'name': 'Limited Edition Essential Zip Hoodies',
         'price': '£14.99',
@@ -106,17 +98,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'image':
             'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
         'images': [
-          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089', // photo
-          'https://shop.upsu.net/cdn/shop/files/1000045774_07de1185-b921-47fa-b3a8-b1823478ca2b_1024x1024@2x.jpg?v=1749131089', // photo
-          'https://shop.upsu.net/cdn/shop/files/Baby_Pink_Shopify_Image_1024x1024@2x.png?v=1749460435', // Baby Pink
-          'https://shop.upsu.net/cdn/shop/files/Blue_Stone_Shopify_Image_1024x1024@2x.png?v=1749460441', // Stone Blue
+          'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
+          'https://shop.upsu.net/cdn/shop/files/1000045774_07de1185-b921-47fa-b3a8-b1823478ca2b_1024x1024@2x.jpg?v=1749131089',
+          'https://shop.upsu.net/cdn/shop/files/Baby_Pink_Shopify_Image_1024x1024@2x.png?v=1749460435',
+          'https://shop.upsu.net/cdn/shop/files/Blue_Stone_Shopify_Image_1024x1024@2x.png?v=1749460441',
         ],
-        'colors': ['Baby Pink', 'Stone Blue'], // NEW
-        'sizes': ['S', 'M', 'L'], // NEW
+        'colors': ['Baby Pink', 'Stone Blue'],
+        'sizes': ['S', 'M', 'L'],
         'description':
             'Redesigned with a fresh chest logo, our limited addition Baby Pink and Stone Blue Hoodies are ultra cosy made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile. ',
       },
-      // 8) Essential T-Shirt — 2 images
       '8': {
         'name': 'Essential T-Shirt',
         'price': '£6.99',
@@ -124,16 +115,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'image':
             'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
         'images': [
-          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236', // Sage
-          'https://shop.upsu.net/cdn/shop/files/LightBlueT-shirt_1024x1024@2x.png?v=1759827236', // Light Blue
+          'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
+          'https://shop.upsu.net/cdn/shop/files/LightBlueT-shirt_1024x1024@2x.png?v=1759827236',
         ],
-        'colors': ['Sage', 'Light Blue'], // NEW
-        'sizes': ['S', 'M', 'L', 'XL', 'XXL'], // NEW
+        'colors': ['Sage', 'Light Blue'],
+        'sizes': ['S', 'M', 'L', 'XL', 'XXL'],
         'description':
             'Redesigned with a fresh chest logo, our Essential T-shirts are made for everyday wear with a modern twist. Soft, durable, and effortlessly versatile — these are the elevated basics your wardrobe\'s been waiting for.',
       },
-
-      // NEW: Portsmouth City Keyring
       '9': {
         'name': 'Portsmouth City Keyring',
         'price': '£6.75',
@@ -142,8 +131,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Carry a piece of Portsmouth wherever you go with our delightful Portsmouth City Keyring, featuring the artwork of renowned illustrator Julia Gash. \n\nPart of our Portsmouth City Collection, this keyring displays Julia’s iconic hand-drawn design, celebrating the city’s famous landmarks and seaside spirit in her signature playful style. \n\nMade from durable acrylic with a high-quality finish, it’s lightweight, practical, and full of charm – a perfect little keepsake or gift that brings big Portsmouth personality to your keys or bag.',
       },
-
-      // NEW: Portsmouth City Coaster
       '10': {
         'name': 'Portsmouth City Coaster',
         'price': '£4.50',
@@ -152,8 +139,6 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         'description':
             'Add a touch of Portsmouth pride to your coffee table, desk, or kitchen with our charming Portsmouth City Coaster, featuring the artwork of renowned illustrator Julia Gash. \n\nPart of our Portsmouth City Collection, this coaster showcases Julia’s iconic hand-drawn design, capturing the city’s beloved landmarks and coastal character in her signature playful style. \n\nCrafted from high-quality materials with a glossy finish and cork backing, it’s both practical and stylish – the perfect souvenir or thoughtful gift with a big personality.',
       },
-
-      // NEW: Portsmouth City Water Bottle
       '11': {
         'name': 'Portsmouth City Water Bottle',
         'price': '£15.00',
@@ -417,26 +402,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
     final productId =
         args is String ? args : (args is int ? args.toString() : '1');
     final productData = getProductData()[productId] ?? getProductData()['1']!;
-    // REPLACED: derive options from productData instead of hardcoding ids
     final hasOptions =
         productData.containsKey('colors') && productData.containsKey('sizes');
 
-    // Build the images list once per build
     final List<String> images = (productData['images'] is List &&
             (productData['images'] as List).isNotEmpty)
         ? (productData['images'] as List).cast<String>()
         : [productData['image'] as String];
 
-    // Defaults for options: first color/size when available
     if (hasOptions) {
       final colors = (productData['colors'] as List).cast<String>();
       final sizes = (productData['sizes'] as List).cast<String>();
       selectedColor ??= colors.isNotEmpty ? colors.first : null;
       selectedSize ??= sizes.isNotEmpty ? sizes.first : null;
-
-      // Optional: simple image selection mapping when there are multiple images
-      // If you want color to change image and you have a per-color images list,
-      // add a mapping here. For now we keep current image unless user taps a thumbnail.
     }
 
     final String? oldPrice = productData['oldPrice'] as String?;
@@ -455,21 +433,19 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // LEFT: main + thumbnails
+                      // Left: image gallery
                       Expanded(
                         flex: 1,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Main image shows current index
                             ClipRRect(
                               borderRadius: BorderRadius.circular(4),
                               child: AspectRatio(
                                 aspectRatio: 1.3,
                                 child: Image.network(
                                   images[selectedImageIndex],
-                                  key: ValueKey<int>(
-                                      selectedImageIndex), // force rebuild on change
+                                  key: ValueKey<int>(selectedImageIndex),
                                   fit: BoxFit.cover,
                                   errorBuilder: (_, __, ___) => Container(
                                     color: Colors.grey[300],
@@ -490,12 +466,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   return Material(
                                     color: Colors.transparent,
                                     child: InkWell(
-                                      onTap: () {
-                                        setState(() {
-                                          selectedImageIndex =
-                                              i; // change main image to clicked thumbnail
-                                        });
-                                      },
+                                      onTap: () => setState(
+                                          () => selectedImageIndex = i),
                                       child: Container(
                                         width: 70,
                                         height: 70,
@@ -527,10 +499,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                           ],
                         ),
                       ),
-
                       const SizedBox(width: 60),
-
-                      // RIGHT: options UI uses productData colors/sizes dynamically
+                      // Right: details and options
                       Expanded(
                         flex: 1,
                         child: Column(
@@ -591,35 +561,27 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           onChanged: (v) {
                                             setState(() {
                                               selectedColor = v;
-                                              // Image mapping by color
                                               if (productId == '6') {
-                                                // Signature T-Shirt
                                                 selectedImageIndex =
                                                     (selectedColor == 'Sand')
                                                         ? 1
                                                         : 0;
                                               } else if (productId == '5') {
-                                                // Signature Hoodie
                                                 selectedImageIndex =
                                                     (selectedColor == 'Ivory')
                                                         ? 1
                                                         : 0;
                                               } else if (productId == '7') {
-                                                // Essential Zip Hoodie
-                                                // Baby Pink -> index 2, Stone Blue -> index 3
                                                 if (selectedColor ==
                                                     'Baby Pink') {
                                                   selectedImageIndex = 0;
                                                 } else if (selectedColor ==
-                                                    'Stone Blue')
-                                                  // ignore: curly_braces_in_flow_control_structures
+                                                    'Stone Blue') {
                                                   selectedImageIndex = 1;
-                                                else
-                                                  // ignore: curly_braces_in_flow_control_structures
+                                                } else {
                                                   selectedImageIndex = 0;
+                                                }
                                               } else if (productId == '8') {
-                                                // Essential T-Shirt
-                                                // Sage -> 0, Light Blue -> 1
                                                 selectedImageIndex =
                                                     (selectedColor ==
                                                             'Light Blue')
@@ -745,11 +707,14 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                             ),
                             const SizedBox(height: 32),
-                            Text(productData['description'] as String,
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Color.fromARGB(255, 131, 131, 131),
-                                    height: 1.6)),
+                            Text(
+                              productData['description'] as String,
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Color.fromARGB(255, 131, 131, 131),
+                                height: 1.6,
+                              ),
+                            ),
                             const SizedBox(height: 24),
                             Row(
                               children: [

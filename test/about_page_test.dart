@@ -23,7 +23,6 @@ void main() {
     await tester
         .pumpWidget(const MaterialApp(home: AboutPage(includeChrome: false)));
     await tester.pump();
-
     final richTexts = tester.widgetList<RichText>(find.byType(RichText));
     final hasPhrase = richTexts
         .any((rt) => rt.text.toPlainText().contains('personalisation service'));

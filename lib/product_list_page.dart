@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'main.dart'; // to reuse ProductCard (or move ProductCard to its own file)
+import 'main.dart';
 import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
 
-// Simple product data model
 class Product {
   final String id;
   final String title;
-  final String price; // formatted string (e.g. £3.00)
+  final String price;
   final String imageUrl;
   final String? oldPrice;
   const Product({
@@ -19,7 +18,6 @@ class Product {
   });
 }
 
-// Arguments passed when navigating to the universal list page
 class ProductListArgs {
   final String pageTitle;
   final String? heroImageUrl;
@@ -47,7 +45,7 @@ class ProductListPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const AppHeader(), // moved INSIDE scroll so it scrolls
+          const AppHeader(),
           if (args.heroImageUrl != null)
             SizedBox(
               height: 260,
@@ -90,7 +88,6 @@ class ProductListPage extends StatelessWidget {
                 style: const TextStyle(fontSize: 16, height: 1.4),
               ),
             ),
-          // Filters
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: Row(
@@ -111,7 +108,9 @@ class ProductListPage extends StatelessWidget {
                     value: 'Best selling',
                     items: const [
                       DropdownMenuItem(
-                          value: 'Best selling', child: Text('Best selling')),
+                        value: 'Best selling',
+                        child: Text('Best selling'),
+                      ),
                     ],
                     onChanged: (_) {},
                   ),
@@ -122,7 +121,6 @@ class ProductListPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-          // Product grid
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: LayoutBuilder(
@@ -150,7 +148,7 @@ class ProductListPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 48),
-          const AppFooter(), // already scrollable
+          const AppFooter(),
         ],
       ),
     );

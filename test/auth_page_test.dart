@@ -6,22 +6,19 @@ void main() {
   testWidgets('Auth page shows tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: AuthPage()));
     await tester.pump();
-
     expect(
-      find.descendant(of: find.byType(TabBar), matching: find.text('Login')),
-      findsOneWidget,
-    );
+        find.descendant(of: find.byType(TabBar), matching: find.text('Login')),
+        findsOneWidget);
     expect(
-      find.descendant(of: find.byType(TabBar), matching: find.text('Sign Up')),
-      findsOneWidget,
-    );
+        find.descendant(
+            of: find.byType(TabBar), matching: find.text('Sign Up')),
+        findsOneWidget);
   });
 
   testWidgets('Login tab shows email, password, forgot, and login button',
       (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: AuthPage()));
     await tester.pump();
-
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);
     expect(find.text('Forgot password?'), findsOneWidget);
@@ -32,10 +29,8 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(home: AuthPage()));
     await tester.pump();
-
     await tester.tap(find.text('Sign Up'));
     await tester.pumpAndSettle();
-
     expect(find.text('Full name'), findsOneWidget);
     expect(find.text('Email'), findsOneWidget);
     expect(find.text('Password'), findsOneWidget);

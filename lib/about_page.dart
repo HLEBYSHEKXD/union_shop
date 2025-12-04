@@ -17,7 +17,7 @@ class AboutPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  // Hero Section
+                  // Hero
                   Container(
                     width: double.infinity,
                     padding: const EdgeInsets.all(40),
@@ -33,8 +33,7 @@ class AboutPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Content Section
+                  // Content
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(
@@ -43,17 +42,13 @@ class AboutPage extends StatelessWidget {
                         const Text(
                           'Welcome to the Union Shop!',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              fontSize: 16, fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 20),
                         RichText(
                           text: TextSpan(
                             style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.black,
-                            ),
+                                fontSize: 14, color: Colors.black),
                             children: [
                               const TextSpan(
                                 text:
@@ -68,10 +63,8 @@ class AboutPage extends StatelessWidget {
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
                                     Navigator.pushNamed(
-                                      context,
-                                      '/product-detail',
-                                      arguments: '26',
-                                    );
+                                        context, '/product-detail',
+                                        arguments: '26');
                                   },
                               ),
                               const TextSpan(text: '!'),
@@ -89,22 +82,17 @@ class AboutPage extends StatelessWidget {
                           style: TextStyle(fontSize: 14),
                         ),
                         const SizedBox(height: 20),
-                        const Text(
-                          'Happy shopping!',
-                          style: TextStyle(fontSize: 14),
-                        ),
+                        const Text('Happy shopping!',
+                            style: TextStyle(fontSize: 14)),
                         const SizedBox(height: 20),
                         const Text(
                           'The Union Shop & Reception Team',
                           style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              fontSize: 14, fontWeight: FontWeight.w600),
                         ),
                       ],
                     ),
                   ),
-
                   if (includeChrome) const AppFooter(),
                 ],
               ),

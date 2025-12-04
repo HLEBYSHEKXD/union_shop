@@ -4,7 +4,6 @@ import 'package:union_shop/footer.dart';
 
 void main() {
   testWidgets('Footer displays', (WidgetTester tester) async {
-    // Set larger viewport size
     tester.view.physicalSize = const Size(1200, 1600);
     tester.view.devicePixelRatio = 1.0;
 
@@ -14,7 +13,6 @@ void main() {
 
     expect(find.byType(AppFooter), findsOneWidget);
 
-    // Reset viewport
     addTearDown(() => tester.view.resetPhysicalSize());
   });
 

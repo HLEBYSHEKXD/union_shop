@@ -5,7 +5,7 @@ import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
 import 'package:union_shop/product_list_page.dart';
 import 'package:union_shop/about_page.dart';
-import 'package:union_shop/auth_page.dart'; // + add
+import 'package:union_shop/auth_page.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -24,7 +24,7 @@ class UnionShopApp extends StatelessWidget {
         '/product-detail': (context) => const ProductDetailPage(),
         '/products': (context) => const ProductListPage(),
         '/about': (context) => const AboutPage(),
-        '/auth': (context) => const AuthPage(), // + add
+        '/auth': (context) => const AuthPage(),
       },
     );
   }
@@ -43,14 +43,14 @@ class _Slide {
   final String subtitle;
   final String buttonText;
   final String? buttonRoute;
-  final Object? buttonArgs; // NEW: pass ProductListArgs to the route
+  final Object? buttonArgs;
   const _Slide({
     required this.imageUrl,
     required this.title,
     required this.subtitle,
     required this.buttonText,
     this.buttonRoute,
-    this.buttonArgs, // NEW
+    this.buttonArgs,
   });
 }
 
@@ -59,7 +59,6 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentPage = 0;
   Timer? _autoPlayTimer;
 
-  // Replace _heroImages with _slides
   final List<_Slide> _slides = [
     const _Slide(
       imageUrl:
@@ -68,9 +67,8 @@ class _HomeScreenState extends State<HomeScreen> {
       subtitle:
           'Over 20% off our essential range. Come and grab yours while stocks last!',
       buttonText: 'BROWSE COLLECTION',
-      buttonRoute: '/products', // CHANGED: go to the universal list
+      buttonRoute: '/products',
       buttonArgs: ProductListArgs(
-        // NEW: bind the list data
         pageTitle: 'Essential Range',
         heroImageUrl:
             'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
@@ -104,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
           'Let\'s create something uniquely you with our personalisation service — From £3 for one line of text!',
       buttonText: 'FIND OUT MORE',
       buttonRoute: '/product-detail',
-      buttonArgs: '26', // NEW: open the personalisation product
+      buttonArgs: '26',
     ),
     const _Slide(
       imageUrl:
@@ -138,21 +136,15 @@ class _HomeScreenState extends State<HomeScreen> {
   void _goPrev() {
     final last = _slides.length - 1;
     final target = _currentPage == 0 ? last : _currentPage - 1;
-    _pageController.animateToPage(
-      target,
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeOut,
-    );
+    _pageController.animateToPage(target,
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
   }
 
   void _goNext() {
     final last = _slides.length - 1;
     final target = _currentPage == last ? 0 : _currentPage + 1;
-    _pageController.animateToPage(
-      target,
-      duration: const Duration(milliseconds: 250),
-      curve: Curves.easeOut,
-    );
+    _pageController.animateToPage(target,
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
   }
 
   @override
@@ -172,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                // Hero Section (carousel with changing text)
+                // Hero carousel
                 SizedBox(
                   height: 400,
                   width: double.infinity,
@@ -197,7 +189,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           },
                         ),
                       ),
-                      // Overlay text driven by _currentPage
                       Positioned(
                         left: 24,
                         right: 24,
@@ -209,19 +200,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               _slides[_currentPage].title,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
-                                fontSize: 32,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                             const SizedBox(height: 12),
                             Text(
                               _slides[_currentPage].subtitle,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                              ),
+                                  fontSize: 18, color: Colors.white),
                             ),
                             const SizedBox(height: 24),
                             ElevatedButton(
@@ -229,8 +217,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 final s = _slides[_currentPage];
                                 if (s.buttonRoute != null) {
                                   Navigator.pushNamed(context, s.buttonRoute!,
-                                      arguments:
-                                          s.buttonArgs); // CHANGED: pass args
+                                      arguments: s.buttonArgs);
                                 }
                               },
                               style: ElevatedButton.styleFrom(
@@ -239,15 +226,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 shape: const RoundedRectangleBorder(
                                     borderRadius: BorderRadius.zero),
                               ),
-                              child: Text(
-                                _slides[_currentPage].buttonText,
-                                style: const TextStyle(letterSpacing: 1),
-                              ),
+                              child: Text(_slides[_currentPage].buttonText,
+                                  style: const TextStyle(letterSpacing: 1)),
                             ),
                           ],
                         ),
                       ),
-                      // Arrow + dots bar
                       Positioned(
                         left: 0,
                         right: 0,
@@ -314,8 +298,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-
-                // Essential Range section (placed ABOVE Signature Range)
                 const SizedBox(height: 32),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 12),
@@ -323,10 +305,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'ESSENTIAL RANGE - OVER 20% OFF!',
                       style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 2,
-                        fontWeight: FontWeight.w700,
-                      ),
+                          fontSize: 20,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -338,9 +319,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio:
-                          0.70, // CHANGE from 0.80 to 0.70 (gives more height)
-                      mainAxisSpacing: 40, // INCREASE from 24 to 40
+                      childAspectRatio: 0.70,
+                      mainAxisSpacing: 40,
                       crossAxisSpacing: 24,
                     ),
                     children: const [
@@ -348,7 +328,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         id: '7',
                         title: 'Limited Edition Essential Zip Hoodies',
                         price: '£14.99',
-                        oldPrice: '£20.00', // NEW
+                        oldPrice: '£20.00',
                         imageUrl:
                             'https://shop.upsu.net/cdn/shop/files/Pink_Essential_Hoodie_2a3589c2-096f-479f-ac60-d41e8a853d04_1024x1024@2x.jpg?v=1749131089',
                       ),
@@ -356,15 +336,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         id: '8',
                         title: 'Essential T-Shirt',
                         price: '£6.99',
-                        oldPrice: '£10.00', // NEW
+                        oldPrice: '£10.00',
                         imageUrl:
                             'https://shop.upsu.net/cdn/shop/files/Sage_T-shirt_1024x1024@2x.png?v=1759827236',
                       ),
                     ],
                   ),
                 ),
-
-                // Signature Range section
                 const SizedBox(height: 32),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 12),
@@ -372,10 +350,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text(
                       'SIGNATURE RANGE',
                       style: TextStyle(
-                        fontSize: 20,
-                        letterSpacing: 2,
-                        fontWeight: FontWeight.w700,
-                      ),
+                          fontSize: 20,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -387,9 +364,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio:
-                          0.70, // CHANGE from 0.80 to 0.70 (gives more height)
-                      mainAxisSpacing: 40, // INCREASE from 24 to 40
+                      childAspectRatio: 0.70,
+                      mainAxisSpacing: 40,
                       crossAxisSpacing: 24,
                     ),
                     children: const [
@@ -410,8 +386,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-
-                // Products Section
                 Container(
                   color: Colors.white,
                   child: Padding(
@@ -421,10 +395,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         const Text(
                           'PORTSMOUTH CITY COLLECTION',
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.black,
-                            letterSpacing: 1,
-                          ),
+                              fontSize: 20,
+                              color: Colors.black,
+                              letterSpacing: 1),
                         ),
                         const SizedBox(height: 48),
                         GridView.count(
@@ -433,8 +406,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisCount:
                               MediaQuery.of(context).size.width > 600 ? 2 : 1,
                           crossAxisSpacing: 24,
-                          mainAxisSpacing:
-                              64, // INCREASE vertical gap between rows
+                          mainAxisSpacing: 64,
                           children: const [
                             ProductCard(
                               id: '1',
@@ -470,8 +442,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-
-                // VIEW ALL button
                 const SizedBox(height: 24),
                 Center(
                   child: ElevatedButton(
@@ -545,22 +515,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 12),
                       shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.zero,
-                      ),
+                          borderRadius: BorderRadius.zero),
                     ),
-                    child: const Text(
-                      'VIEW ALL',
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 1,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: const Text('VIEW ALL',
+                        style: TextStyle(
+                            fontSize: 14,
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.bold)),
                   ),
                 ),
                 const SizedBox(height: 40),
-
-                // OUR RANGE title
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(
@@ -569,20 +533,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     style: TextStyle(
                       fontSize: 18,
                       letterSpacing: 2,
-                      // ignore: deprecated_member_use
                       color: Colors.black.withOpacity(0.7),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                 ),
                 const SizedBox(height: 24),
-
-                // Category tiles grid
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: LayoutBuilder(
                     builder: (context, constraints) {
-                      // 2 columns on narrow, 4 on wide
                       final crossAxisCount = constraints.maxWidth < 700 ? 2 : 4;
                       return GridView.count(
                         crossAxisCount: crossAxisCount,
@@ -601,11 +561,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             imageUrl:
                                 'https://shop.upsu.net/cdn/shop/products/Personalised_Image_1024x1024@2x.jpg?v=1562949869',
                             onTap: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/product-detail',
-                                arguments: '26',
-                              );
+                              Navigator.pushNamed(context, '/product-detail',
+                                  arguments: '26');
                             },
                           ),
                           _CategoryTile(
@@ -757,7 +714,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                           'https://shop.upsu.net/cdn/shop/files/Nike_Pants_Shopify_-_Sept_24_1024x1024@2x.png?v=1726483797',
                                       oldPrice: '£24.99',
                                     ),
-                                    // ...add more sale items as needed...
                                   ],
                                 ),
                               );
@@ -769,8 +725,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 40),
-
-                // Footer
                 const AppFooter(),
               ],
             ),
@@ -786,7 +740,7 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
-  final String? oldPrice; // NEW
+  final String? oldPrice;
 
   const ProductCard({
     super.key,
@@ -794,13 +748,13 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.imageUrl,
-    this.oldPrice, // NEW
+    this.oldPrice,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 24), // ADD margin to separate rows
+      margin: const EdgeInsets.only(bottom: 24),
       child: InkWell(
         onTap: () =>
             Navigator.pushNamed(context, '/product-detail', arguments: id),
@@ -816,12 +770,11 @@ class ProductCard extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              title,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-            ),
+            Text(title,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style:
+                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w600)),
             const SizedBox(height: 4),
             Row(
               children: [
@@ -839,10 +792,9 @@ class ProductCard extends StatelessWidget {
                 Text(
                   price,
                   style: const TextStyle(
-                    fontSize: 14,
-                    color: Color.fromARGB(255, 114, 120, 126),
-                    fontWeight: FontWeight.w600,
-                  ),
+                      fontSize: 14,
+                      color: Color.fromARGB(255, 114, 120, 126),
+                      fontWeight: FontWeight.w600),
                 ),
               ],
             ),
@@ -853,24 +805,19 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-// Simple reusable category tile
 class _CategoryTile extends StatelessWidget {
   final String label;
   final String imageUrl;
-  final VoidCallback? onTap; // NEW: optional tap handler
+  final VoidCallback? onTap;
 
-  const _CategoryTile({
-    required this.label,
-    required this.imageUrl,
-    this.onTap, // NEW
-  });
+  const _CategoryTile(
+      {required this.label, required this.imageUrl, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap ??
           () {
-            // Default behavior for other tiles (e.g., navigate to product list)
             if (label.toLowerCase() == 'clothing') {
               Navigator.pushNamed(
                 context,
@@ -1016,13 +963,14 @@ class _CategoryTile extends StatelessWidget {
                 ),
               );
             } else {
-              // Default navigation for other tiles
-              Navigator.pushNamed(context, '/products',
-                  arguments: ProductListArgs(
+              Navigator.pushNamed(
+                context,
+                '/products',
+                arguments: ProductListArgs(
                     pageTitle: label,
                     heroImageUrl: imageUrl,
-                    products: const [],
-                  ));
+                    products: const []),
+              );
             }
           },
       child: Stack(
@@ -1036,9 +984,8 @@ class _CategoryTile extends StatelessWidget {
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: Colors.black.withOpacity(0.35),
-              ),
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.black.withOpacity(0.35)),
             ),
           ),
           Center(
@@ -1046,10 +993,9 @@ class _CategoryTile extends StatelessWidget {
               label,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-              ),
+                  fontSize: 22,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white),
             ),
           ),
         ],

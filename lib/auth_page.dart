@@ -40,26 +40,20 @@ class _LoginForm extends StatelessWidget {
         children: [
           const TextField(
             decoration: InputDecoration(
-              labelText: 'Email',
-              border: OutlineInputBorder(),
-            ),
+                labelText: 'Email', border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           const TextField(
             decoration: InputDecoration(
-              labelText: 'Password',
-              border: OutlineInputBorder(),
-            ),
+                labelText: 'Password', border: OutlineInputBorder()),
             obscureText: true,
           ),
           const SizedBox(height: 8),
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-              onPressed: () {},
-              child: const Text('Forgot password?'),
-            ),
+                onPressed: () {}, child: const Text('Forgot password?')),
           ),
           const SizedBox(height: 8),
           ElevatedButton(
@@ -88,33 +82,24 @@ class _SignupForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const TextField(
-            decoration: InputDecoration(
-              labelText: 'Full name',
-              border: OutlineInputBorder(),
-            ),
-          ),
+              decoration: InputDecoration(
+                  labelText: 'Full name', border: OutlineInputBorder())),
           const SizedBox(height: 16),
           const TextField(
             decoration: InputDecoration(
-              labelText: 'Email',
-              border: OutlineInputBorder(),
-            ),
+                labelText: 'Email', border: OutlineInputBorder()),
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           const TextField(
             decoration: InputDecoration(
-              labelText: 'Password',
-              border: OutlineInputBorder(),
-            ),
+                labelText: 'Password', border: OutlineInputBorder()),
             obscureText: true,
           ),
           const SizedBox(height: 16),
           const TextField(
             decoration: InputDecoration(
-              labelText: 'Confirm password',
-              border: OutlineInputBorder(),
-            ),
+                labelText: 'Confirm password', border: OutlineInputBorder()),
             obscureText: true,
           ),
           const SizedBox(height: 16),
@@ -122,11 +107,8 @@ class _SignupForm extends StatelessWidget {
             children: [
               Checkbox(value: false, onChanged: (_) {}),
               const Expanded(
-                child: Text(
-                  'I agree to the Terms & Conditions',
-                  softWrap: true,
-                ),
-              ),
+                  child: Text('I agree to the Terms & Conditions',
+                      softWrap: true)),
             ],
           ),
           const SizedBox(height: 8),

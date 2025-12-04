@@ -18,7 +18,6 @@ class PrintShackAboutPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Centered page title
                 const Center(
                   child: Text(
                     'The Union Print Shack',
@@ -36,8 +35,6 @@ class PrintShackAboutPage extends StatelessWidget {
                           height: 220,
                           fit: BoxFit.cover,
                           errorBuilder: (_, __, ___) => const SizedBox.shrink(),
-                          // In tests, avoid network fetch work by showing empty box.
-                          // You can also gate this by includeChrome if desired.
                         ),
                       ),
                     ),
@@ -100,8 +97,6 @@ class PrintShackAboutPage extends StatelessWidget {
                   'and £5 for two lines or a large back logo. Turnaround time is up to three working days, and we’ll let you know as soon as it’s ready to collect.',
                   style: TextStyle(fontSize: 14, height: 1.5),
                 ),
-
-                // Added sections from your screenshot
                 const SizedBox(height: 32),
                 const Text(
                   'Personalisation Terms & Conditions',
