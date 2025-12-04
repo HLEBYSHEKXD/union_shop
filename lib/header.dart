@@ -207,7 +207,10 @@ class AppHeader extends StatelessWidget {
                 children: [
                   IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
                   IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.person_outline)),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/auth'); // bind to auth
+                      },
+                      icon: const Icon(Icons.person_outline)),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.shopping_bag_outlined)),
