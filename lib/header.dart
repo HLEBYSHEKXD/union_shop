@@ -35,8 +35,12 @@ class AppHeader extends StatelessWidget {
               ),
               const SizedBox(width: 24),
               Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                // Replace Row -> Wrap to prevent overflow in tests/narrow layouts.
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  crossAxisAlignment: WrapCrossAlignment.center,
+                  spacing: 8,
+                  runSpacing: 4,
                   children: [
                     TextButton(
                       onPressed: () {
@@ -45,9 +49,7 @@ class AppHeader extends StatelessWidget {
                       },
                       child: const Text('Home'),
                     ),
-                    const SizedBox(width: 8),
                     TextButton(onPressed: () {}, child: const Text('Shop')),
-                    const SizedBox(width: 8),
 
                     // The Print Shack popup menu
                     PopupMenuButton<String>(
@@ -110,7 +112,6 @@ class AppHeader extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(width: 8),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(
@@ -191,14 +192,12 @@ class AppHeader extends StatelessWidget {
                       },
                       child: const Text('SALE!'),
                     ),
-                    const SizedBox(width: 8),
                     TextButton(
                       onPressed: () {
                         Navigator.pushNamed(context, '/about');
                       },
                       child: const Text('About'),
                     ),
-                    const SizedBox(width: 8),
                     TextButton(onPressed: () {}, child: const Text('UPSU.net')),
                   ],
                 ),

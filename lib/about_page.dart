@@ -4,14 +4,15 @@ import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
 
 class AboutPage extends StatelessWidget {
-  const AboutPage({super.key});
+  const AboutPage({super.key, this.includeChrome = true});
+  final bool includeChrome;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          const AppHeader(),
+          if (includeChrome) const AppHeader(),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -104,7 +105,7 @@ class AboutPage extends StatelessWidget {
                     ),
                   ),
 
-                  const AppFooter(),
+                  if (includeChrome) const AppFooter(),
                 ],
               ),
             ),

@@ -3,7 +3,8 @@ import 'package:union_shop/header.dart';
 import 'package:union_shop/footer.dart';
 
 class PrintShackAboutPage extends StatelessWidget {
-  const PrintShackAboutPage({super.key});
+  const PrintShackAboutPage({super.key, this.includeChrome = true});
+  final bool includeChrome;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +12,7 @@ class PrintShackAboutPage extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          const AppHeader(),
+          if (includeChrome) const AppHeader(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 32),
             child: Column(
@@ -35,6 +36,8 @@ class PrintShackAboutPage extends StatelessWidget {
                           height: 220,
                           fit: BoxFit.cover,
                           errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                          // In tests, avoid network fetch work by showing empty box.
+                          // You can also gate this by includeChrome if desired.
                         ),
                       ),
                     ),
@@ -126,7 +129,7 @@ class PrintShackAboutPage extends StatelessWidget {
               ],
             ),
           ),
-          const AppFooter(),
+          if (includeChrome) const AppFooter(),
         ],
       ),
     );
